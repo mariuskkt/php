@@ -9,11 +9,9 @@
 <html>
     <head>
         <title>Aš valdau HTML!</title>
-        
-    </head>
+        </head>
     <body>
         <h1> Marius- html asas!</h1>
         <p> Moku kurti statin? turin?</p>
-            
     </body>
 </html>
