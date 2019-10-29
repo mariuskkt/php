@@ -2,10 +2,16 @@
 
 <html>
     <head>
-        <title>PHP lydes ir <?php print date( 'Y.m.d' , strtotime(' + 1 day')); ?> </title>
+        <title>Komentarai</title>
     </head>
     <body>
-        <h1><strong>Marius</strong> - PHP su manim buvo ir <?php print date ('H' , strtotime(' - 1 hour ')) ?> valanda</h1>
-        <p><?php print date('Y' , strtotime(' + 1year')); ?> ne uz kalnu</p>
+        <h1>Dainiu Tekstai</h1>
+        <h2>Paragrafo Daina</h2>
+       <?php // <p>As toks vienisas jaunas paragrafas...</p>//?>        <!--
+        <p>Mindau svetimo kodo gatves...</p>
+        -->
     </body>
 </html>
+
+
+
