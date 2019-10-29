@@ -2,17 +2,12 @@
 
 <html>
     <head>
-        <title>Komentarai</title>
+        <title>Php lydes ir <?php print date('Y.m.d', strtotime('+' . rand(1, 5) . 'years')); ?></title>  
     </head>
     <body>
-        <h1>Dainiu Tekstai</h1>
-        <h2>Paragrafo Daina</h2>
-        <?php // <p>As toks vienisas jaunas paragrafas...</p>//?>        
-        <!--
-        <p>Mindau svetimo kodo gatves...</p>
-        -->
+        <h1><strong>Marius</strong> - Galbut turesiu <?php print (rand(1, 5) . ' vaiku !'); ?> </h1>
+        <p> D. Trump'as nebebus prezidentu:<?php print date(' Y.m.d' , strtotime('+' . rand(2, 10) . 'years')); ?>
+        </p>
     </body>
 </html>
-
-
 
