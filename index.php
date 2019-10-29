@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 
-print 'hi';
+print 'pakeitimas';
