@@ -1,17 +1,11 @@
 
+
 <html>
     <head>
-        <title> <?php print 'Aš,' . date('l') . ' ir PHP'; ?></title>
-        <meta charset="UTF-8">
-
-        </head>
+        <title>PHP lydes ir <?php print date( 'Y.m.d' , strtotime(' + 1 day')); ?> </title>
+    </head>
     <body>
-        <h1> <b>Marius</b> - html <?php print ' ir php'; ?> asas! <br>
-        jau nuo <?php print date(' Y'). ' met?'; ?>
-        </h1>
-        <p> Viskas prasid?jo <?php print date(' F'); ?> <br>
-               <?php print ' menesio,' . date(' j') . ' dien?!'; ?> </p>
-        
+        <h1><strong>Marius</strong> - PHP su manim buvo ir <?php print date ('H' , strtotime(' - 1 hour ')) ?> valanda</h1>
+        <p><?php print date('Y' , strtotime(' + 1year')); ?> ne uz kalnu</p>
     </body>
 </html>
-
