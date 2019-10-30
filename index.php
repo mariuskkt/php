@@ -4,15 +4,13 @@
     <head>
         <title></title>
         <style>
-            body{background-color: rgb(<?php print rand(0, 255); ?>, <?php print rand(0, 255); ?>, <?php print rand(0, 255); ?>);}
-            h1{font-size: <?php print rand(1, 70);  ?> px;}
-            p {color: rgb(<?php print rand(0, 255); ?>, <?php print rand(0, 255); ?>, <?php print rand(0, 255); ?>);}
+
         </style>
     </head>
+
     <body>
         <main>
-            <h1>As keiciu savo dydi!</h1>
-            <p> As keiciu savo spalva!</p>
+            <div> <img src="/img/<?php print rand(1, 6); ?>.jpg"> </div>
         </main>
     </body>
 </head>
