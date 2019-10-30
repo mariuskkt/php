@@ -1,20 +1,34 @@
 
-
 <html>
     <head>
         <title>Bomba</title>
         <style>
-            img{
-                height:<?php print 100 + date('s')?>px;
-                width: <?php print 100 + date('s')?>px; 
+            .bomb{
+                
+                background-size:<?php print date('s'); ?>%;
+                background-repeat:no-repeat;
+                height:500px;
+                width:500px; 
+                background-image: url("/img/bomb.jpg");
+            }
+            .bomb00{
+                background-size: contain;
+                background-image:url("/img/bomb1.jpg");
             }
         </style>
     </head>
     <body>
         <main>
-            <div> <img src="/img/bomb.jpg"></div>
-            <?php print date('s'); ?> 
+
+            <div class="bomb bomb<?php print date('s'); ?>">
+                <?php print date('s'); ?>
+            </div>  
         </main>
     </body>
 </head>
 </html>
+
+
+
+
+
