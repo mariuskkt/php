@@ -8,11 +8,11 @@
                 background-repeat:no-repeat;
                 height:500px;
                 width:500px; 
-                background-image: url("/img/bomb.jpg");
+                background-image: url("assets/img/bomb.jpg");
             }
             .bomb00{
                 background-size: cover;
-                background-image:url("/img/bomb1.jpg");
+                background-image:url("assets/img/bomb1.jpg");
             }
         </style>
     </head>
