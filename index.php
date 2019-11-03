@@ -1,32 +1,26 @@
+<?php
 
+$string = 'vienas';
+$int = 123;
+$bool = true;
+$null = null;
+
+$li_1 = "String tipas: $string";
+$li_2 = "Integer tipas: $int";
+$li_3 = "Boolean tipas: $bool";
+$li_4 = "Null_tipas: $null";
+
+?>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Bomba</title>
-        <style>
-            .bomb{
-                background-size:<?php print date('s'); ?>%;
-                background-repeat:no-repeat;
-                height:500px;
-                width:500px; 
-                background-image: url("/assets/images/bomb.jpg");
-            }
-            .bomb00{
-                background-size: cover;
-                background-image:url("/assets/images/bomb1.jpg");
-            }
-        </style>
     </head>
     <body>
-        <main>
-            <div class="bomb bomb<?php print date('s'); ?>">
-                <?php print date('s'); ?>
-            </div>  
-        </main>
+        <ul>
+            <li><?php print $li_1; ?></li>
+            <li><?php print $li_2; ?></li>
+            <li><?php print $li_3; ?></li>
+            <li><?php print $li_4; ?></li>
+        </ul>
     </body>
-</head>
 </html>
-
-
-
-
-
