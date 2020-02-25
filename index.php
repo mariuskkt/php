@@ -4,10 +4,10 @@
     $piss_ml = rand(100, 350);
     $piss_temp = 36.4;
 
-    $piss_soup_temp = ($soup_ml * $soup_temp + $piss_ml * $piss_temp)/ ($soup_ml + $piss_ml);
+    $piss_soup_temp = round(($soup_ml * $soup_temp + $piss_ml * $piss_temp)/ ($soup_ml + $piss_ml), 1);
     $h1 = "Sriubos prognozė";
-    $p1 = "Pradžioje puode buvo" .  <?php print $soup_ml?> . "ml." . <?php print $soup_temp ?> . "C sriubos.";
-    $p2 = "Į puodą primyžus" . <?php print $piss_ml ?> . "ml.," . "sriubos temperatūra patapo" . <?php print $piss_soup_temp ?> . "C."; 
+    $p1 = "Pradžioje puode buvo " . $soup_ml . " ml. " .  $soup_temp . " C sriubos.";
+    $p2 = "Į puodą primyžus " . $piss_ml . " ml., sriubos temperatūra patapo " .  $piss_soup_temp . " C.";
 ?>
 
 <html>
