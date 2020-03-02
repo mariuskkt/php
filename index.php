@@ -6,6 +6,9 @@ $p_distance = round($police_fuel / $police_cons * 100, 1);
 $my_fuel = rand(0, 20);
 $my_cons = 11.5;
 $m_distance = round($my_fuel / $my_cons * 100, 1);
+
+$mentai_nuvaziuos = 'Farai nuvažiuos: ' . $p_distance . 'km';
+$as_nuvaziuosiu = 'AŠ nuvažiuočiau:' . $m_distance . 'km.';
 ?>
 
 <html>
@@ -14,8 +17,8 @@ $m_distance = round($my_fuel / $my_cons * 100, 1);
 <body>
 <?php print $h1; ?>
 <ul>
-    <li> Farai nuvažiuos: <?php print $p_distance; ?> km.</li>
-    <li> AŠ nuvažiuočiau: <?php print $m_distance; ?> km.</li>
+    <li> <?php print $mentai_nuvaziuos; ?></li>
+    <li> <?php print $as_nuvaziuosiu; ?></li>
 </ul>
 </body>
 </html>
