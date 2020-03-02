@@ -7,41 +7,82 @@ $my_fuel = rand(0, 20);
 $my_cons = 11.5;
 $m_distance = round($my_fuel / $my_cons * 100, 1);
 
+$policija_img = 'https://cdn.shopify.com/s/files/1/0799/8983/products/Police-Car_1024x1024.png?v=1473532117';
+$multipla_img = 'http://www.greasenergy-shop.com/WebRoot/Store2/Shops/63102114/52E2/68CD/BFE1/4995/8F96/C0A8/2BB8/CBF1/Multipla.png';
+$arrow_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Arrow_east.svg/1024px-Arrow_east.svg.png';
+$bybis_img = 'https://www.station-beast.ch/components/com_jshopping/files/img_products/thumb_edfwesffdvgyrf.png';
+
 $mentai_nuvaziuos = 'Farai nuvažiuos: ' . $p_distance . 'km';
 $as_nuvaziuosiu = 'AŠ nuvažiuočiau:' . $m_distance . 'km.';
 
-if ($m_distance > $p_distance) {
-    $result = 'pabegau';
+
+$distance = $m_distance - $p_distance;
+
+if ($distance >= 0) {
+    $h2 = 'Mentai bus už ' . $distance . 'km';
+    $bybis = 'bybis_none';
+    $display = 'arrow_display';
+    $policija = 'policija_none';
 } else {
-    $result = 'cbb';
+    $display = 'arrow';
+    $policija = 'policija';
+    $h2 = ' Mentai bus visai čia pat ';
+    $bybis = 'bybis_display';
 }
 ?>
 
 <html>
 <head>
     <style>
-        div {
-            height: 400px;
-            width: 400px;
-            background-position: center;
-            background-size: cover;
-        }
-
-        h1 {
-            color: antiquewhite;
-        }
-
         img {
-            width: 100%;
-            height: 100%;
+            width: 200px;
+            height: 200px;
         }
 
-        .cbb {
-            background-image: url("http://assets.nydailynews.com/polopoly_fs/1.1483522.1381589546!/img/httpImage/image.jpg_gen/derivatives/article_970/nypdblow12n-1-web.jpg");
+        .arrow {
+            display: none;
         }
 
-        .pabegau {
-            background-image: url("https://www.telesurtv.net/__export/1478180857205/sites/telesur/img/news/2016/09/13/tupac_ftp1.jpg_1810791533.jpg");
+        .arrow_display {
+            display: block;
+        }
+
+        .policija {
+            display: block;
+            transform: translateX(50%) rotate(-45deg);
+            position: relative;
+        }
+
+        .policija_none {
+            display: block;
+            position: relative;
+        }
+
+        .bybis {
+            transform: rotate(80deg);
+            position: absolute;
+            top: 50%;
+            left: 12%;
+            height: 40px;
+            width: 40px;
+        }
+
+        .bybis_none {
+            display: none;
+        }
+
+        .bybis_display {
+            display: block;
+        }
+
+        .container {
+            display: flex;
+            position: relative;
+            align-items: center;
+        }
+
+        .photo_container img {
+            object-fit: scale-down;
         }
     </style>
 </head>
@@ -50,7 +91,21 @@ if ($m_distance > $p_distance) {
 <ul>
     <li> <?php print $mentai_nuvaziuos; ?></li>
     <li> <?php print $as_nuvaziuosiu; ?></li>
-    <div class="<?php print $result ?>"><h1><?php print $result; ?></h1></div>
 </ul>
+<h2><?php print $h2; ?></h2>
+<div class="container">
+    <div class="photo_container">
+        <img class="<?php print $policija; ?>"
+             src=<?php print $policija_img; ?>>
+        <img class="bybis <?php print $bybis; ?>"
+             src=<?php print $bybis_img; ?>>
+    </div>
+    <div class="photo_container <?php print $display; ?>">
+        <img src=<?php print $arrow_img; ?>>
+    </div>
+    <div class="photo_container">
+        <img src=<?php print $multipla_img; ?>>
+    </div>
+</div>
 </body>
 </html>
