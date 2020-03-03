@@ -1,110 +1,109 @@
 <?php
-$h1 = 'Pabegimo skaiciuokle';
-$police_fuel = rand(0, 20);
-$police_cons = 7.5;
-$p_distance = round($police_fuel / $police_cons * 100, 1);
-$my_fuel = rand(0, 20);
-$my_cons = 11.5;
-$m_distance = round($my_fuel / $my_cons * 100, 1);
+//esamo laiko + 20min
+// 1min = 5%
+// esama laika atimti is +20min, gauta minuciu skirtuma *5 ir atimti is 100%, gausi %kiek praejo
+$now_time = date('H:i:s');
+$next_joint_time = date('H:i:s', strtotime('+ 20min'));
+print "$now_time  $next_joint_time";
+$now_sec = date('s');
+$now_min = date('i');
+$now_hr = date('h');
 
-$policija_img = 'https://cdn.shopify.com/s/files/1/0799/8983/products/Police-Car_1024x1024.png?v=1473532117';
-$multipla_img = 'http://www.greasenergy-shop.com/WebRoot/Store2/Shops/63102114/52E2/68CD/BFE1/4995/8F96/C0A8/2BB8/CBF1/Multipla.png';
-$arrow_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Arrow_east.svg/1024px-Arrow_east.svg.png';
-$bybis_img = 'https://www.station-beast.ch/components/com_jshopping/files/img_products/thumb_edfwesffdvgyrf.png';
+$sec_deg = $now_sec * 6;
 
-$mentai_nuvaziuos = 'Farai nuvažiuos: ' . $p_distance . 'km';
-$as_nuvaziuosiu = 'AŠ nuvažiuočiau:' . $m_distance . 'km.';
+$min_deg = $now_min * 6;
 
+$hr_deg = $now_hr * 30;
 
-$distance = $m_distance - $p_distance;
-
-if ($distance >= 0) {
-    $h2 = 'Mentai bus už ' . $distance . 'km';
-    $bybis = 'bybis_none';
-    $display = 'arrow_display';
-    $policija = 'policija_none';
-} else {
-    $display = 'arrow';
-    $policija = 'policija';
-    $h2 = ' Mentai bus visai čia pat ';
-    $bybis = 'bybis_display';
-}
+$sec_img_src = 'assets/rsz_herbal-joints-1.png';
+$min_img_src = 'assets/rsz_1047316.png';
+$hr_img_src = 'assets/rsz_1unnamed.png';
 ?>
 
 <html>
 <head>
     <style>
-        img {
-            width: 200px;
-            height: 200px;
-        }
-
-        .arrow {
-            display: none;
-        }
-
-        .arrow_display {
-            display: block;
-        }
-
-        .policija {
-            display: block;
-            transform: translateX(50%) rotate(-45deg);
-            position: relative;
-        }
-
-        .policija_none {
-            display: block;
-            position: relative;
-        }
-
-        .bybis {
-            transform: rotate(80deg);
-            position: absolute;
-            top: 50%;
-            left: 12%;
-            height: 40px;
-            width: 40px;
-        }
-
-        .bybis_none {
-            display: none;
-        }
-
-        .bybis_display {
-            display: block;
-        }
-
         .container {
-            display: flex;
+            height: 200px;
+            width: 500px;
+            background-color: darkred;
             position: relative;
-            align-items: center;
         }
 
-        .photo_container img {
-            object-fit: scale-down;
+        .watch_container {
+            position: relative;
+            background-image: url("assets/Analogue_clock_face.svg.webp");
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            width: 300px;
+            display: inline-block;
         }
+
+        .seconds {
+            position: absolute;
+            width: 60px;
+            height: 150px;
+            z-index: 1;
+            left: 40%;
+            transform-origin: bottom center;
+            transform: rotate(<?php print $sec_deg; ?>deg);
+        }
+
+        .minutes {
+            position: absolute;
+            width: 70px;
+            height: 100px;
+            z-index: 1;
+            left: 38%;
+            top: 15%;
+            transform-origin: bottom center;
+            transform: rotate(<?php print $min_deg; ?>deg);
+        }
+
+        .hours {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            z-index: 1;
+            left: 44%;
+            top: 24%;
+            transform-origin: bottom center;
+            transform: rotate(<?php print $hr_deg; ?>deg);
+        }
+
+        .seconds_img, .minutes_img, .hours_img {
+            height: 100%;
+            width: 100%;
+            object-position: center;
+
+        }
+
+        /*.filter{*/
+        /*    position: absolute;*/
+        /*    height: 17%;*/
+        /*    width: 80%;*/
+        /*    background-color: rgba(10, 10, 10, 0.3);*/
+        /*    bottom:30%;*/
+        /*    left: 10%;*/
+        /*    transform: rotate(-15deg);*/
+        /*}*/
     </style>
 </head>
 <body>
-<?php print $h1; ?>
-<ul>
-    <li> <?php print $mentai_nuvaziuos; ?></li>
-    <li> <?php print $as_nuvaziuosiu; ?></li>
-</ul>
-<h2><?php print $h2; ?></h2>
-<div class="container">
-    <div class="photo_container">
-        <img class="<?php print $policija; ?>"
-             src=<?php print $policija_img; ?>>
-        <img class="bybis <?php print $bybis; ?>"
-             src=<?php print $bybis_img; ?>>
+<!--<div class="container">-->
+<!--    <img src="https://3f0861b6bc98c08770be-789248f0448453b835406008213ad4a2.ssl.cf2.rackcdn.com/cover_photo_265717_1423785275.png">-->
+<!--    <div class="filter"></div>-->
+<!--</div>-->
+<div class="watch_container">
+    <div class="seconds">
+        <img class="seconds_img" src="<?php print $sec_img_src; ?>">
     </div>
-    <div class="photo_container <?php print $display; ?>">
-        <img src=<?php print $arrow_img; ?>>
+    <div class="minutes">
+        <img class="minutes_img" src="<?php print $min_img_src; ?>">
     </div>
-    <div class="photo_container">
-        <img src=<?php print $multipla_img; ?>>
+    <div class="hours">
+        <img class="hours_img" src="<?php print $hr_img_src; ?>">
     </div>
 </div>
 </body>
