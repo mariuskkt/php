@@ -1,90 +1,231 @@
 <?php
 
-$now_time = date('H:i:s');
-print $now_time;
-$now_sec = date('s');
-$now_min = date('i');
-$now_hr = date('h');
+$game = [
+    'time' => '12:08',
+    'player' => [
+        'armor' => rand(1, 100),
+        'health' => rand(1, 100),
+        'wanted_level' => rand(0, 5),
+        'cash' => rand(0, 9999999),
+        'position' => [
+            'x' => 100.123123,
+            'y' => 57.312313,
+            'z' => 5.212134
+        ],
+        'weapons' => [
+            'active_id' => rand(0, 2),
+            'available' => [
+                [
+                    'name' => 'Dildo',
+                    'damage' => 30,
+                    'icon' => 'https://vignette4.wikia.nocookie.net/gtawiki/images/8/81/Chainsaw-GTASA-icon.png/revision/latest?cb=20150609164709',
+                    'type' => 'meelee',
+                ],
+                [
+                    'name' => 'Uzi',
+                    'damage' => 70,
+                    'icon' => 'http://vignette2.wikia.nocookie.net/gtawiki/images/c/c4/Micro-Uzi-GTASA-icon.png/revision/latest?cb=20150609172042',
+                    'type' => 'firearm',
+                    'ammo' => [
+                        'magazine_size' => 150,
+                        'in_magazine' => 40,
+                        'total' => 900,
+                    ]
+                ]
+            ]
+        ],
+        'clothes' => [
+            'top' => [
+                'active_id' => null,
+                'available' => [
+                    [
+                        'name' => 'T-shirt',
+                        'model' => '....',
+                    ]
+                ]
+            ],
+            'bottom' => [
+                'active_id' => null,
+                'available' => [
+                    [
+                        'name' => 'Jeans',
+                        'model' => '....',
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+$game['player']['weapons']['available'][] = [
+    'name' => 'fist',
+    'damage' => 10,
+    'icon' => 'http://vignette4.wikia.nocookie.net/gtawiki/images/9/9e/Fist-GTASA-Icon.png/revision/latest/scale-to-width-down/185?cb=20170309235459',
+    'type' => 'meelee'
+];
 
-$time_left = 20 - $now_min % 20;
-$smoke_title = 'Kita kaseka rukysi už: ' . $time_left;
+$game ['time'] = date('H:i');
 
-$sec_deg = $now_sec * 6;
+$active_id = $game['player']['weapons']['active_id'];
+$equiped = $game['player']['weapons']['available'][$active_id]['name'];
+$wanted = $game['player']['wanted_level'];
+$time = $game ['time'];
+$cash = sprintf('%07d', $game['player']['cash']);
+$equiped_img = $game['player']['weapons']['available'][$active_id]['icon'];
 
-$min_deg = $now_min * 6 - 5;
+$armor_width = $game['player']['armor'] . '%';
+$health_width = $game['player']['health'] . '%';
+$empty_wanted = 5 - $wanted;
 
-$hr_deg = (60 * $now_hr + $now_min) * 0.5;
-
-$sec_img_src = 'assets/rsz_herbal-joints-1.png';
-$min_img_src = 'assets/rsz_1047316.png';
-$hr_img_src = 'assets/rsz_1unnamed.png';
+//unset($game['player']['weapons']['active_id'][$active_id]);
+//
+//$keys = array_keys($game['player']['weapons']['available']);
+//var_dump($keys);
+//var_dump($game['player']['weapons']);
 ?>
-
-<html>
+<html lang="en" dir="ltr">
 <head>
-    <meta http-equiv="refresh" content="1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>GTA</title>
     <style>
-        .watch_container {
-            position: relative;
-            background-image: url("assets/Analogue_clock_face.svg.webp");
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: myFirstFont;
+            src: url("pricedown.ttf") format("truetype");
+        }
+
+        html {
+            font-family: myFirstFont;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            width: 400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 10px;
+        }
+
+        h1 {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            color: grey;
+            font-size: 90px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .gun {
+            height: 200px;
             background-size: cover;
             background-position: center;
-            height: 300px;
-            width: 300px;
-            display: inline-block;
+            background-repeat: no-repeat;
         }
 
-        .seconds {
-            position: absolute;
-            width: 60px;
-            height: 150px;
-            z-index: 1;
-            left: 40%;
-            transform-origin: bottom center;
-            transform: rotate(<?php print $sec_deg; ?>deg);
+        .dildo {
+            background-image: url("<?php print $equiped_img ?>");
         }
 
-        .minutes {
-            position: absolute;
-            width: 70px;
-            height: 100px;
-            z-index: 1;
-            left: 39%;
-            top: 19%;
-            transform-origin: bottom center;
-            transform: rotate(<?php print $min_deg; ?>deg);
+        .fist {
+            background-image: url("<?php print $equiped_img ?>");
         }
 
-        .hours {
-            position: absolute;
-            width: 40px;
-            height: 80px;
-            z-index: 1;
-            left: 44%;
-            top: 24%;
-            transform-origin: bottom center;
-            transform: rotate(<?php print $hr_deg; ?>deg);
+        .uzi {
+            background-image: url("<?php print $equiped_img ?>");
         }
 
-        .seconds_img, .minutes_img, .hours_img {
-            height: 100%;
+        .right-container {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .armor, .health {
+            height: 25px;
+            border: 3px solid black;
+            border-left: 8px solid black;
+            border-right: 8px solid black;
             width: 100%;
-            object-position: center;
+            position: relative;
+        }
+
+        .armor::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            background-color: antiquewhite;
+            width: <?php print $armor_width;?>;
+        }
+
+        .health::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            background-color: darkred;
+            width: <?php print $health_width;?>;
+        }
+
+        .armor-health-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .money {
+            grid-column: -1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: darkgreen;
+            font-size: 100px;
+            width: 100%;
+        }
+
+        .wanted {
+            grid-column: -1 / 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wanted img {
+            height: 80px;
+            width: 80px;
+        }
+
+        .money::before {
+            content: '$';
         }
     </style>
 </head>
 <body>
-<div class="watch_container">
-    <div class="seconds">
-        <img class="seconds_img" src="<?php print $sec_img_src; ?>">
+<section>
+    <div class="gun <?php print $equiped; ?>">
     </div>
-    <div class="minutes">
-        <img class="minutes_img" src="<?php print $min_img_src; ?>">
+    <div class="right-container">
+        <h1 class="time"><?php print $time; ?></h1>
+        <div class="armor-health-container">
+            <div class="armor"></div>
+            <div class="health"></div>
+        </div>
     </div>
-    <div class="hours">
-        <img class="hours_img" src="<?php print $hr_img_src; ?>">
+    <h2 class="money"><?php print $cash; ?></h2>
+    <div class="wanted">
+            <?php for ($x = 0; $x < $wanted; $x++): ?>
+                <img src="http://es.fordesigner.com/imguploads/Image/cjbc/zcool/png20080526/1211811539.png">
+            <?php endfor; ?>
+            <?php for ($x = 0; $x < ($empty_wanted); $x++): ?>
+                <img src="https://cdn1.iconfinder.com/data/icons/vote-reward-1/24/Awward_reward_rate_rating_star_empty-512.png">
+            <?php endfor; ?>
     </div>
-</div>
-    <h2><?php print $smoke_title; ?></h2>
+</section>
 </body>
-</html>
