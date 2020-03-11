@@ -30,6 +30,57 @@ $nav = [
     ]
 ];
 
+$bank_acc = [
+    [
+        'name' => 'Iki darbo uzmokestis',
+        'amount' => 600,
+        'type' => 'income'
+    ],
+
+    [
+        'name' => 'Kalvariju nacnykas',
+        'amount' => -15,
+        'type' => 'expenses'
+
+    ],
+
+
+    [
+        'name' => 'Rustamas Cigonidze',
+        'amount' => -50,
+        'type' => 'expenses'
+    ],
+
+
+    [
+        'name' => 'Nakvynes namai',
+        'amount' => -10,
+        'type' => 'expenses'
+    ]
+
+];
+
+$footer = [
+    'links' => [
+        [
+            'name' => 'Crack',
+            'link' => '/cjbiography.php'
+        ],
+        [
+            'name' => 'Hot Coffee',
+            'link' => '/home.php'
+        ],
+        [
+            'name' => 'Cheats',
+            'link' => '/groovestreet.php'
+        ]
+    ],
+    'copyright' =>
+        [
+            'text' => 'Copyright 2020'
+        ]
+];
+
 ?>
 
 <html lang="en" dir="ltr">
@@ -39,12 +90,34 @@ $nav = [
     <link rel="stylesheet" href="assets/css/style.css">
     <title>includes</title>
     <style>
+        .expenses {
+            color: darkred;
+            list-style-type: none;
+        }
+
+        .income {
+            color: darkgreen;
+            list-style-type: none;
+        }
+
+        main {
+            padding: 0 150px;
+        }
     </style>
 </head>
 <body>
 <?php include 'templates/nav.php' ?>
 
 <main>
-
+    <h1>Banko ataskaita</h1>
+    <ul>
+        <?php foreach ($bank_acc as $money) : ?>
+            <li class="<?php print $money['type'] ?>">
+                <?php print $money['name'] . ' ' . $money['amount']; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </main>
+
+<?php include 'templates/footer.php' ?>
 </body>
