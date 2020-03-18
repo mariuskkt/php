@@ -1,55 +1,59 @@
 <?php
+$job_seekers = [];
 
-$nav = [
-    [
-        'name' => 'Home',
-        'link' => '/index.php'
-    ],
-    [
-        'name' => 'Cj biography',
-        'link' => '/cjbiography.php',
-        'drop_down' => [
-            [
-                'name' => 'Home',
-                'link' => '/index.php'
-            ],
+/**
+ * function makes an array which can be be added in to job_seekers array
+ * @param $name string for name
+ * @param $profession string for profession
+ * @param $age int for age
+ * @param $sex string for sex
+ * @return array
+ */
+function person($name, $profession, $age, $sex):array
+{
+    return [
+        'name' => $name,
+        'profession' => $profession,
+        'age' => $age,
+        'sex' => $sex,
+        'from' => date('Y.m.d'),
+        'till' => date('Y.m.d', strtotime('+ 2 years'))
+    ];
+}
 
-            [
-                'name' => 'nothome',
-                'link' => '/nothome.php'
-            ],
-            [
-                'name' => 'next',
-                'link' => '/next.php'
-            ],
-        ]
-    ],
-    [
-        'name' => 'Groove street',
-        'link' => '/groovestreet.php'
-    ]
-];
 
-$footer = [
-    'links' => [
-        [
-            'name' => 'Crack',
-            'link' => '/cjbiography.php'
-        ],
-        [
-            'name' => 'Hot Coffee',
-            'link' => '/home.php'
-        ],
-        [
-            'name' => 'Cheats',
-            'link' => '/groovestreet.php'
-        ]
-    ],
-    'copyright' =>
-        [
-            'text' => 'Copyright 2020'
-        ]
-];
+function age_selection($people)
+{
+    $sorted = [];
+    foreach ($people as $person) {
+        if ($person['age'] > 50) {
+            $sorted['over_50'][] = $person;
+        } else {
+            $sorted['under_50'][] = $person;
+        }
+    }
+    return $sorted;
+
+}
+
+$job_seekers[] = person("Antanas", 'Stalius', 60, 'male');
+$job_seekers[] = person("Olga", 'Striptiziorka', 38, 'female');
+
+var_dump($job_seekers);
+var_dump(age_selection($job_seekers));
+
+function person_to_string($person)
+{
+    return strtr('@name @age @sex an ex @profession is looking for a new job ', [
+
+        '@name' => $person['name'],
+        '@age' => $person['age'] . 'year old',
+        '@sex' => $person['sex'],
+        '@profession' => $person['profession']
+    ]);
+
+}
+
 
 ?>
 <html lang="en" dir="ltr">
@@ -62,9 +66,9 @@ $footer = [
     </style>
 </head>
 <body>
-<?php include 'templates/nav.php' ?>
 <main>
-
+    <?php foreach ($job_seekers as $person): ?>
+        <p><?php print person_to_string($person) ?></p>
+    <?php endforeach;?>
 </main>
-<?php include 'templates/footer.php' ?>
 </body>
