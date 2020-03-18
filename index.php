@@ -1,106 +1,66 @@
 <?php
+$my_soldiers = 10;
+$enemy_soldiers = rand(5, 15);
+$fights = [];
+var_dump($enemy_soldiers);
+$win_perc = $my_soldiers / ($enemy_soldiers + $my_soldiers) * 100;
 
-/**
- * ction generates matrix array
- * @param int $size
- * @return array
- */
-function generate_matrix(int $size):array
-{
-    $matrix = [];
+while ($my_soldiers > 0 && $enemy_soldiers > 0) {
 
-    for ($x = 0; $x < $size; $x++) {
-        for ($y = 0; $y < $size; $y++) {
-            $matrix[$x][$y] = rand(0, 1);
-        }
-    };
+    $fight = ['enemy_down' => 0];
 
-    return $matrix;
-}
+    while ($enemy_soldiers > 0) {
 
-$matrix = generate_matrix(3);
-
-var_dump($matrix);
-
-/**
- * @param array $array
- * @return array
- */
-function get_winning_rows(array $array):array
-{
-    $winnings = [];
-
-    foreach ($array as $row_id => $columns) {
-        if (array_sum($columns) == count($columns)) {
-            $winnings[] = $row_id;
+        if (rand(0, 100) <= $win_perc) {
+            $fight['enemy_down']++;
+            $enemy_soldiers--;
+        } else {
+            $my_soldiers--;
+            break;
         }
     }
-
-    return $winnings;
+    $fights[] = $fight;
 }
-
-;
-
-$winnings = get_winning_rows($matrix);
-var_dump(get_winning_rows($matrix));
-
+var_dump($fights);
 
 ?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>includes</title>
+    <title></title>
     <style>
-        main {
+        .fight {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
-        .container {
-            display: grid;
-            grid: auto-flow 100px / 300px;
+        .fight div {
+            padding: 20px;
+            font-size: 20px;
         }
 
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-column-gap: 10px;
-            padding: 10px;
+        .my-soldier {
+            background: green;
         }
 
-        .border {
-            border: 5px solid darkred;
-        }
-
-        .green {
-            background-color: darkgreen;
-        }
-
-        .black {
-            background-color: black;
-        }
-
-        .laimejai {
-            border: 3px darkred;
+        .enemy-soldier {
+            background: red;
         }
     </style>
 </head>
 <body>
 <main>
-    <section class="container">
-        <?php foreach ($matrix as $row_id => $column): ?>
-
-            <div class="row <?php print(in_array($row_id, $winnings) ? 'border' : 'not'); ?>">
-                <?php foreach ($column as $colors): ?>
-                    <div class="<?php print ($colors ? 'green' : 'black') ?>">
-                    </div>
-                <?php endforeach; ?>
+    <div class="fights-container">
+        <?php foreach ($fights as $fight): ?>
+            <div class="fight">
+                <div class="my-soldier">M</div>
+                <div class="hedge">-</div>
+                <?php for ($i = 0; $i < $fight['enemy_down']; $i++): ?>
+                    <div class="enemy-soldier">E</div>
+                <?php endfor; ?>
             </div>
         <?php endforeach; ?>
-    </section>
+    </div>
 </main>
 </body>
+</html>
+
