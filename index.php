@@ -1,55 +1,48 @@
 <?php
-$car_market = [];
 
 /**
- * function makes an array which can be be added in to job_seekers array
- * @param $name string for name
- * @param $profession string for profession
- * @param $age int for age
- * @param $sex string for sex
+ * ction generates matrix array
+ * @param int $size
  * @return array
  */
-function car($name, $model, $year_made, $type, $price):array
+function generate_matrix(int $size):array
 {
-    return [
-        'name' => $name,
-        'model' => $model,
-        'year_made' => $year_made,
-        'type' => $type,
-        'price' => $price,
-    ];
+    $matrix = [];
+
+    for ($x = 0; $x < $size; $x++) {
+        for ($y = 0; $y < $size; $y++) {
+            $matrix[$x][$y] = rand(0, 1);
+        }
+    };
+
+    return $matrix;
 }
 
+$matrix = generate_matrix(3);
 
-function price_selection($cars,$min,$max)
+var_dump($matrix);
+
+/**
+ * @param array $array
+ * @return array
+ */
+function get_winning_rows(array $array):array
 {
-    $results = [];
-    foreach ($cars as $car) {
-        if ($car['price'] > $min && $car['price'] < $max) {
-            $results['over_' . $min . '_' . 'under_' . $max][] = $car;
+    $winnings = [];
+
+    foreach ($array as $row_id => $columns) {
+        if (array_sum($columns) == count($columns)) {
+            $winnings[] = $row_id;
         }
     }
-    return $results;
 
+    return $winnings;
 }
 
-$car_market[] = car('ford', 'Focus',1999,'Caravan','2000');
-$car_market[] = car('Opel', 'Astra',2009,'Sedan','5010');
+;
 
-var_dump($car_market);
-var_dump(price_selection($car_market,1000,3000));
-
-function person_to_string($person)
-{
-    return strtr('@name @age @sex an ex @profession is looking for a new job ', [
-
-        '@name' => $person['name'],
-        '@age' => $person['age'] . 'year old',
-        '@sex' => $person['sex'],
-        '@profession' => $person['profession']
-    ]);
-
-}
+$winnings = get_winning_rows($matrix);
+var_dump(get_winning_rows($matrix));
 
 
 ?>
@@ -60,12 +53,54 @@ function person_to_string($person)
     <link rel="stylesheet" href="assets/css/style.css">
     <title>includes</title>
     <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid: auto-flow 100px / 300px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: 10px;
+            padding: 10px;
+        }
+
+        .border {
+            border: 5px solid darkred;
+        }
+
+        .green {
+            background-color: darkgreen;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        .laimejai {
+            border: 3px darkred;
+        }
     </style>
 </head>
 <body>
 <main>
-<!--    --><?php //foreach ($job_seekers as $person): ?>
-<!--        <p>--><?php //print person_to_string($person) ?><!--</p>-->
-<!--    --><?php //endforeach;?>
+    <section class="container">
+        <?php foreach ($matrix as $row_id => $column): ?>
+
+            <div class="row <?php print(in_array($row_id, $winnings) ? 'border' : 'not'); ?>">
+                <?php foreach ($column as $colors): ?>
+                    <div class="<?php print ($colors ? 'green' : 'black') ?>">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
+    </section>
 </main>
 </body>
