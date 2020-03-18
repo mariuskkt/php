@@ -1,5 +1,5 @@
 <?php
-$job_seekers = [];
+$car_market = [];
 
 /**
  * function makes an array which can be be added in to job_seekers array
@@ -9,38 +9,35 @@ $job_seekers = [];
  * @param $sex string for sex
  * @return array
  */
-function person($name, $profession, $age, $sex):array
+function car($name, $model, $year_made, $type, $price):array
 {
     return [
         'name' => $name,
-        'profession' => $profession,
-        'age' => $age,
-        'sex' => $sex,
-        'from' => date('Y.m.d'),
-        'till' => date('Y.m.d', strtotime('+ 2 years'))
+        'model' => $model,
+        'year_made' => $year_made,
+        'type' => $type,
+        'price' => $price,
     ];
 }
 
 
-function age_selection($people)
+function price_selection($cars,$min,$max)
 {
-    $sorted = [];
-    foreach ($people as $person) {
-        if ($person['age'] > 50) {
-            $sorted['over_50'][] = $person;
-        } else {
-            $sorted['under_50'][] = $person;
+    $results = [];
+    foreach ($cars as $car) {
+        if ($car['price'] > $min && $car['price'] < $max) {
+            $results['over_' . $min . '_' . 'under_' . $max][] = $car;
         }
     }
-    return $sorted;
+    return $results;
 
 }
 
-$job_seekers[] = person("Antanas", 'Stalius', 60, 'male');
-$job_seekers[] = person("Olga", 'Striptiziorka', 38, 'female');
+$car_market[] = car('ford', 'Focus',1999,'Caravan','2000');
+$car_market[] = car('Opel', 'Astra',2009,'Sedan','5010');
 
-var_dump($job_seekers);
-var_dump(age_selection($job_seekers));
+var_dump($car_market);
+var_dump(price_selection($car_market,1000,3000));
 
 function person_to_string($person)
 {
@@ -67,8 +64,8 @@ function person_to_string($person)
 </head>
 <body>
 <main>
-    <?php foreach ($job_seekers as $person): ?>
-        <p><?php print person_to_string($person) ?></p>
-    <?php endforeach;?>
+<!--    --><?php //foreach ($job_seekers as $person): ?>
+<!--        <p>--><?php //print person_to_string($person) ?><!--</p>-->
+<!--    --><?php //endforeach;?>
 </main>
 </body>
