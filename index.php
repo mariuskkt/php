@@ -39,21 +39,39 @@ function tinkamos_panos(array $panos): array
             $tinkamos_panos[] = $pana;
         }
     }
-    return $tinkamos_panos;
-};
 
-$text = 'Graži ir protinga: ';
+    return $tinkamos_panos;
+}
+
+
+/**
+ * Funkcija grazina random varda is array
+ * @param array $panos
+ * @return string
+ */
+function get_random_girl_name(array $panos): string
+{
+    $index_rand = array_rand($panos);
+    $name = $panos[$index_rand]['vardas'];
+
+    return $name;
+}
+
+
+$text = 'Atsitiktinai parinktos panos vardas: ' . get_random_girl_name($panos);
+
 ?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title></title>
     <style>
-        ul{
+        ul {
             list-style-type: none;
             font-size: 30px;
         }
-        img{
+
+        img {
             width: 200px;
         }
     </style>
@@ -62,10 +80,7 @@ $text = 'Graži ir protinga: ';
 <main>
     <div class="fights-container">
         <ul>
-            <?php foreach (tinkamos_panos($panos) as $pana): ?>
-                <li><?php print $text . $pana['vardas'] ;?></li>
-                <img src="<?php print $pana['selfie']?>">
-            <?php endforeach; ?>
+            <p><?php print $text; ?></p>
         </ul>
     </div>
 </main>
