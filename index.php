@@ -1,64 +1,72 @@
 <?php
-$my_soldiers = 10;
-$enemy_soldiers = rand(5, 15);
-$fights = [];
-var_dump($enemy_soldiers);
-$win_perc = $my_soldiers / ($enemy_soldiers + $my_soldiers) * 100;
+$panos = [
+    [
+        'vardas' => 'Monika',
+        'grazi' => true,
+        'protinga' => false
+    ],
+    [
+        'vardas' => 'Greta',
+        'grazi' => true,
+        'protinga' => true,
+        'selfie' => 'https://thefw.com/files/2013/05/judussteer-tumblr.jpg'
+    ],
+    [
+        'vardas' => 'Milda',
+        'grazi' => true,
+        'protinga' => false
 
-while ($my_soldiers > 0 && $enemy_soldiers > 0) {
+    ],
+    [
+        'vardas' => 'Inga',
+        'grazi' => true,
+        'protinga' => true,
+        'selfie' => 'http://4.bp.blogspot.com/-tOpiLf9F5ys/UMSAvLPAz1I/AAAAAAAASEA/gfu4TvIqR1E/s1600/smiling+horse.jpg'
+    ]
+];
 
-    $fight = ['enemy_down' => 0];
 
-    while ($enemy_soldiers > 0) {
-
-        if (rand(0, 100) <= $win_perc) {
-            $fight['enemy_down']++;
-            $enemy_soldiers--;
-        } else {
-            $my_soldiers--;
-            break;
+/**
+ * Funkcija grazina tik grazias ir protingas panas
+ * @param array $panos
+ * @return array
+ */
+function tinkamos_panos(array $panos): array
+{
+    $tinkamos_panos = [];
+    foreach ($panos as $pana) {
+        if ($pana['grazi'] && $pana['protinga']) {
+            $tinkamos_panos[] = $pana;
         }
     }
-    $fights[] = $fight;
-}
-var_dump($fights);
+    return $tinkamos_panos;
+};
 
+$text = 'Graži ir protinga: ';
 ?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title></title>
     <style>
-        .fight {
-            display: flex;
+        ul{
+            list-style-type: none;
+            font-size: 30px;
         }
-
-        .fight div {
-            padding: 20px;
-            font-size: 20px;
-        }
-
-        .my-soldier {
-            background: green;
-        }
-
-        .enemy-soldier {
-            background: red;
+        img{
+            width: 200px;
         }
     </style>
 </head>
 <body>
 <main>
     <div class="fights-container">
-        <?php foreach ($fights as $fight): ?>
-            <div class="fight">
-                <div class="my-soldier">M</div>
-                <div class="hedge">-</div>
-                <?php for ($i = 0; $i < $fight['enemy_down']; $i++): ?>
-                    <div class="enemy-soldier">E</div>
-                <?php endfor; ?>
-            </div>
-        <?php endforeach; ?>
+        <ul>
+            <?php foreach (tinkamos_panos($panos) as $pana): ?>
+                <li><?php print $text . $pana['vardas'] ;?></li>
+                <img src="<?php print $pana['selfie']?>">
+            <?php endforeach; ?>
+        </ul>
     </div>
 </main>
 </body>
