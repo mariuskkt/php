@@ -57,8 +57,66 @@ function get_random_girl_name(array $panos): string
     return $name;
 }
 
+/**
+ * procentaliai panos kurios yra grazios ir protingos is array
+ * @param array $panos
+ * @return float
+ */
+function get_grazio_protingos_rate(array $panos): float
+{
+    $good_girls = count(tinkamos_panos($panos));
+    $total_girls = count($panos);
 
+    return round($good_girls * 100 / $total_girls, 1);
+}
+
+
+$filter = [
+    'vardas' => 'Inga',
+    'grazi' => true
+];
+
+/**
+ * generuoja isfiltruota array jei randa tokius indexus ir value kurie pateikti funkcijoj
+ * @param array $array
+ * @param string $col
+ * @param string $col_value
+ * @return array
+ */
+function filter_array(array $array, $conditon): array
+{
+    $results = [];
+
+    foreach ($array as $index) {
+        foreach ($conditon as $key => $value) {
+            if ($key === $index[$key] && $value === $index[$value]) {
+                $results[] = $index;
+            }
+        }
+    }
+
+    return $results;
+}
+
+//var_dump(filter_array($panos, $filter));
+$results = [];
+foreach ($panos as $index => $value) {
+    foreach ($filter as $key => $filter_value) {
+        $match = true;
+
+        if ($value[$key] !== $filter_value) {
+            
+            $match = false;
+            break;
+        }
+
+        $results[] = $value;
+
+    }
+}
+var_dump($results);
 $text = 'Atsitiktinai parinktos panos vardas: ' . get_random_girl_name($panos);
+$h1 = 'Graziu ir protingu panu yra ' . get_grazio_protingos_rate($panos) . '%';
 
 ?>
 <html lang="en" dir="ltr">
@@ -79,9 +137,7 @@ $text = 'Atsitiktinai parinktos panos vardas: ' . get_random_girl_name($panos);
 <body>
 <main>
     <div class="fights-container">
-        <ul>
-            <p><?php print $text; ?></p>
-        </ul>
+        <h1><?php print $h1; ?></h1>
     </div>
 </main>
 </body>
