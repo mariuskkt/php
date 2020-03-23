@@ -1,54 +1,22 @@
 <?php
-$array = [
-    [
-        'a', 'a', 'a', 'g', 'd', 'd'
-    ],
-    [
-        [
-                ['a']
-            ]
-    ]
-];
-
-function count_array_values(array $array, $val)
+/**
+ * returns integer value in square
+ * @param $x float
+ * @return float|int
+ */
+function square(float $x): float
 {
-    $results = 0;
-
-    foreach ($array as $value) {
-        if ($value == $val) {
-            $results++;
-        }
-    }
-    return $results;
+    return $x * $x;
 }
 
+$text = 'Iveskite skaiciu';
 
-function replace_array_values(array &$random_array, $from, $to)
-{
-    foreach ($random_array as &$letter) {
-        if ($letter == $from) {
-            $letter = $to;
-        }
-    }
+if (isset($_POST['number']) && $_POST['number'] != '') {
+    $text = 'Skaicius kvadratu: ' . square($_POST['number']);
 }
 
-function replace_values_recursive(array &$array, $from, $to)
-{
-    foreach ($array as &$letter) {
-        if ($letter == $from) {
-            $letter = $to;
-        }
-        else if (is_array($letter)){
-            replace_values_recursive($letter,$from,$to);
-        }
-    }
-}
+var_dump($_POST);
 
-$b = 'b';
-$a = 'a';
-replace_values_recursive($array, $a, $b);
-
-var_dump($array);
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -59,8 +27,14 @@ var_dump($array);
 </head>
 <body>
 <main>
-    <div class="fights-container">
-    </div>
+    <form action="index.php" method="post">
+        <label>
+            <span>Kokį skaičių pakelti kvadratu: </span>
+            <input name="number" type="number" placeholder="skaicius">
+        </label>
+        <input type="submit">
+    </form>
+    <h1><?php print $text ?></h1>
 </main>
 </body>
 </html>
