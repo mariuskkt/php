@@ -57,6 +57,7 @@ textarea {
 select{
     box-shadow: 0 0 5px darkgrey;
     padding: 10px 5px;
+    margin-top: 10px;
 }
 textarea:focus {
     outline-color: green;
