@@ -1,5 +1,4 @@
 <?php
-
 /**
  * converts $array['attr'] to string
  * @param array $array
@@ -14,7 +13,6 @@ function form_attr(array $array): string
     }
     return $text;
 }
-
 $form = [
     'attr' => [
         'action' => 'index.php',
@@ -23,10 +21,11 @@ $form = [
         'id' => 'form-id'
     ],
     'fields' => [
+
         'first_name' => [
             'label' => 'First name',
             'type' => 'text',
-            'value' => 'Piotras',
+            'value' => '',
             'extra' => [
                 'attr' => [
                     'class' => 'red',
@@ -99,6 +98,26 @@ $form = [
     ]
 ];
 
+
+/**
+ * returns filtered inputs
+ * @param array $form
+ * @return array|null or array
+ */
+function get_filtered_input(array $form): ?array
+{
+    $filter_params = [];
+
+    foreach ($form['fields'] as $field_index => $field_value) {
+        $filter_params[$field_index] = FILTER_SANITIZE_SPECIAL_CHARS;
+    };
+
+    return filter_input_array(INPUT_POST, $filter_params);
+}
+
+$safe_input = get_filtered_input($form);
+
+var_dump($safe_input);
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -110,7 +129,12 @@ $form = [
 </head>
 <body>
 <main>
-    <?php include 'templates/form.tpl.php'; ?>
+    <h1>Hack it!</h1>
+    <h2><?php print $safe_input['first_name'] ?? ''; ?></h2>
+    <h2><?php print $safe_input['password'] ?? ''; ?></h2>
+    <form method="post">
+        <?php include 'templates/form.tpl.php'?>
+    </form>
 </main>
 </body>
 </html>
