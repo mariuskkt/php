@@ -1,15 +1,15 @@
 <?php
 
-require  'bootloader.php';
+require 'bootloader.php';
 
 function form_success($form, $safe_input)
 {
-    var_dump('success');
+    var_dump('Tu zjbs');
 }
 
 function form_failed($form, $safe_input)
 {
-    var_dump('failed');
+    var_dump('Tu ne zjbs');
 }
 
 
@@ -25,12 +25,13 @@ $form = [
         'failed' => 'form_failed'
     ],
     'fields' => [
-        'first_name' => [
-            'label' => 'First name',
+        'Name' => [
+            'label' => 'Name and surname',
             'type' => 'text',
             'value' => '',
             'validate' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_space'
             ],
             'extra' => [
 
@@ -40,20 +41,7 @@ $form = [
                 ]
             ]
         ],
-        'password' => [
-            'label' => 'Password',
-            'type' => 'password',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'green',
-                    'id' => 'pass'
-                ]
-            ]
-        ],
+
         'age' => [
             'label' => 'Your age:',
             'type' => 'number',
@@ -62,54 +50,18 @@ $form = [
                 'validate_not_empty',
                 'validate_is_number',
                 'validate_is_positive',
-                'validate_max_100'
+//                'validate_max_100',
+//                'validate_18_to_100',
+                'validate_field_range' =>
+                    [
+                        'min' => 18,
+                        'max' => 100
+                    ]
             ],
             'extra' => [
                 'attr' => [
                     'class' => 'green',
                     'id' => 'pass'
-                ]
-            ]
-        ],
-        'text' => [
-            'label' => 'Type something',
-            'type' => 'textarea',
-            'value' => '',
-            'extra' => [
-                'attr' => [
-
-                ]
-            ]
-        ],
-//        'sex' => [
-//            'type' => 'radio',
-//            'label' => 'Choose one',
-//            'option' => [
-//                'value' => 'male',
-//                'label' => 'Male'
-//            ],
-//            [
-//                'value' => 'female',
-//                'label' => 'Female'
-//            ],
-//            'extra' => [
-//                'attr' => [
-//
-//                ]
-//            ]
-//        ],
-        'cars' => [
-            'type' => 'select',
-            'label' => '',
-            'value' => 'vw',
-            'option' => [
-                'volvo' => 'VOLVO',
-                'vw' => 'Volkswagen',
-                'mersedes-benz' => 'Mercedes-Benz'
-            ],
-            'extra' => [
-                'attr' => [
-
                 ]
             ]
         ]
@@ -118,7 +70,7 @@ $form = [
         'button' => [
             'name' => 'action',
             'type' => 'submit',
-            'title' => 'SUBMIT',
+            'title' => 'Ar aš normalus?',
             'extra' => [
                 'attr' => [
 
@@ -155,6 +107,7 @@ var_dump($_POST);
     <h2><?php print $safe_input['password'] ?? ''; ?></h2>
     <form method="post">
         <?php include 'core/templates/form.tpl.php' ?>
+        <?php print $form['attr']['action']?>
     </form>
 </main>
 </body>

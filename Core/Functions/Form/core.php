@@ -25,19 +25,25 @@ function validate_form(array &$form, array $safe_input): bool
     $success = true;
 
     foreach ($safe_input as $input_id => $value) {
+
         $field = &$form['fields'][$input_id];
         if ($safe_input[$input_id] != '') {
             $field['value'] = $value;
         }
         if (isset($field['validate'])) {
-            foreach ($field['validate'] as $function) {
-                $valid = $function($value, $field);
+            foreach ($field['validate'] as $function_key => $function) {
+                if (is_array($function)) {
+                    $valid = $function_key($value, $field, $function);
+                } else {
+                    $valid = $function($value, $field);
+                }
                 if (!$valid) {
                     $success = false;
                     break;
                 }
             }
         }
+
     }
     if (isset($form['callbacks']['success']) && $success) {
         $form['callbacks']['success']($form, $safe_input);
@@ -48,3 +54,5 @@ function validate_form(array &$form, array $safe_input): bool
 
     return $success;
 }
+
+

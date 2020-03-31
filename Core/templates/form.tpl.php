@@ -9,7 +9,8 @@
                 <input <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
                         'type' => $field['type'],
-                        'value' => $field['value'] ?? ''
+                        'value' => $field['value'] ?? '',
+                        'placeholder' => $field['label'] ?? ''
                     ]);
                 ?>>
             <?php elseif (in_array($field['type'], ['select'])): ?>

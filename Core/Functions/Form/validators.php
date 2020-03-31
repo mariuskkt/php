@@ -45,3 +45,18 @@ function validate_not_empty($field_input, &$field)
     }
     return true;
 }
+
+/**
+ * checks if there is a space in a string
+ * @param $field_input
+ * @param $field
+ * @return bool
+ */
+function validate_space($field_input, &$field)
+{
+    if (!strpos($field_input, ' ')){
+        $field['error'] = 'Name must contain Name and Surname';
+        return false;
+    }
+    return true;
+}
