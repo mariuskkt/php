@@ -43,8 +43,21 @@ function validate_form(array &$form, array $safe_input): bool
                 }
             }
         }
-
     }
+    if ($success) {
+        foreach ($form['validators'] ?? [] as $function_key => $function) {
+            if (is_array($function)) {
+                $valid = $function_key($safe_input, $form, $function);
+            } else {
+                $valid = $function($safe_input, $form);
+            }
+            if (!$valid) {
+                $success = false;
+                break;
+            }
+        }
+    }
+
     if (isset($form['callbacks']['success']) && $success) {
         $form['callbacks']['success']($form, $safe_input);
     } elseif (isset($form['callbacks']['failed']) && !$success) {

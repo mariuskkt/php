@@ -10,9 +10,9 @@
                         'name' => $field_id,
                         'type' => $field['type'],
                         'value' => $field['value'] ?? '',
-                        'placeholder' => $field['label'] ?? ''
+//                        'placeholder' => $field['label'] ?? ''
                     ]);
-                ?>>
+                ?>
             <?php elseif (in_array($field['type'], ['select'])): ?>
                 <select <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
@@ -48,7 +48,7 @@
             <?php endif; ?>
         </label>
         <?php if (isset($field['error'])): ?>
-            <span class="error"><?php print $field ['error']; ?></span>
+            <span class="error"><?php print $field['error']; ?></span>
         <?php endif; ?>
     <?php endforeach; ?>
     <?php foreach ($form['buttons'] ?? [] as $button_id => $button): ?>
@@ -60,4 +60,7 @@
             <?php print $button['title'] ?>
         </button>
     <?php endforeach; ?>
+    <?php if (isset($form['error'])): ?>
+        <span class="error"><?php print $form['error']; ?></span>
+    <?php endif; ?>
 </form>

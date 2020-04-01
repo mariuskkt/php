@@ -4,12 +4,25 @@ require 'bootloader.php';
 
 function form_success($form, $safe_input)
 {
-    var_dump('Tu zjbs');
+//    switch ($safe_input['select']) {
+//        case 'atimtis':
+//            $result = $safe_input['x'] - $safe_input['y'];
+//            break;
+//        case 'sudetis':
+//            $result = $safe_input['x'] + $safe_input['y'];
+//            break;
+//        case 'daugyba':
+//            $result = $safe_input['x'] * $safe_input['y'];
+//            break;
+//        default:
+//            $result = 0;
+//    }
+    var_dump('Viskas ok su tavim');
 }
 
 function form_failed($form, $safe_input)
 {
-    var_dump('Tu ne zjbs');
+    var_dump('Confirmed. Adaptas');
 }
 
 
@@ -20,18 +33,35 @@ $form = [
         'class' => 'my-form',
         'id' => 'form-id'
     ],
-    'callbacks' => [
-        'success' => 'form_success',
-        'failed' => 'form_failed'
-    ],
     'fields' => [
-        'Name' => [
-            'label' => 'Name and surname',
+        'pirmas' => [
+            'label' => 'Pirmo value: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_space'
+                'validate_text_length'=>[
+                    'min' => 2,
+                    'max' => 10
+                ]
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name'
+                ]
+            ]
+        ],
+        'antras' => [
+            'label' => 'Value value: ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+                'validate_text_length'=>[
+                        'min' => 2,
+                        'max' => 10
+                ]
             ],
             'extra' => [
 
@@ -41,42 +71,91 @@ $form = [
                 ]
             ]
         ],
-
-        'age' => [
-            'label' => 'Your age:',
-            'type' => 'number',
+        'telefonas' => [
+            'label' => 'Phone: ',
+            'type' => 'text',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
                 'validate_is_number',
-                'validate_is_positive',
-//                'validate_max_100',
-//                'validate_18_to_100',
-                'validate_field_range' =>
-                    [
-                        'min' => 18,
-                        'max' => 100
-                    ]
+                'validate_phone',
+                'validate_text_length'=>[
+                    'min' => 2,
+                    'max' => 20
+                ]
             ],
             'extra' => [
                 'attr' => [
-                    'class' => 'green',
-                    'id' => 'pass'
+                    'class' => 'red',
+                    'id' => 'first-name'
                 ]
             ]
-        ]
+        ],
+//        'select' => [
+//            'type' => 'select',
+//            'label' => 'Pasirinkite veiksma:',
+//            'value' => '',
+//            'validate' => [
+//                'choose_action',
+//                'validate_select'
+//            ],
+//            'option' => [
+//                'sudetis' => 'Sudetis',
+//                'atimtis' => 'Atimtis',
+//                'daugyba' => 'Daugyba'
+//            ],
+//            'extra' => [
+//                'attr' => [
+//
+//                ]
+//            ]
+//        ]
     ],
+//        'age' => [
+//            'label' => 'Your age:',
+//            'type' => 'number',
+//            'value' => '',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number',
+//                'validate_is_positive',
+//                'validate_max_100',
+//                'validate_18_to_100',
+//                'validate_field_range' =>
+//                    [
+//                        'min' => 18,
+//                        'max' => 100
+//                    ]
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'green',
+//                    'id' => 'pass'
+//                ]
+//            ]
+//        ]
+//    ],
     'buttons' => [
         'button' => [
             'name' => 'action',
             'type' => 'submit',
-            'title' => 'Ar aš normalus?',
+            'title' => 'Vaziuojam',
             'extra' => [
                 'attr' => [
 
                 ]
             ]
         ]
+    ],
+    'validators' => [
+        'validate_fields_match' => [
+            'pirmas',
+            'antras'
+        ]
+    ],
+    'callbacks' => [
+        'success' => 'form_success',
+        'failed' => 'form_failed'
     ]
 ];
 
@@ -107,7 +186,6 @@ var_dump($_POST);
     <h2><?php print $safe_input['password'] ?? ''; ?></h2>
     <form method="post">
         <?php include 'core/templates/form.tpl.php' ?>
-        <?php print $form['attr']['action']?>
     </form>
 </main>
 </body>

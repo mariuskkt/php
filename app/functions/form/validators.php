@@ -56,3 +56,35 @@ function validate_field_range($field_input, array &$field, $params)
 
     return true;
 }
+
+/**
+ * checks if selector selected
+ * @param $field_input
+ * @param array $field
+ * @return bool
+ */
+function choose_action($field_input, array &$field)
+{
+    if (empty($field_input)) {
+        $field['error'] = 'Choose one selection';
+        return false;
+    }
+    return true;
+}
+
+/**
+ * checks if option from select is valid
+ * @param $field_input
+ * @param array $field
+ * @return bool
+ */
+function validate_select($field_input, array &$field)
+{
+    if (!isset($field['option'][$field_input])) {
+        $field['error'] = 'Neapipisi, lopas';
+
+        return false;
+    }
+
+    return true;
+}
