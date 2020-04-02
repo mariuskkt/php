@@ -2,6 +2,12 @@
 
 require 'bootloader.php';
 
+/**
+ * if fields are filled in correctly
+ * @param $form
+ * @param $safe_input
+ * @throws Exception
+ */
 function form_success($form, $safe_input)
 {
 //    switch ($safe_input['select']) {
@@ -17,14 +23,40 @@ function form_success($form, $safe_input)
 //        default:
 //            $result = 0;
 //    }
-    var_dump('Viskas ok su tavim');
+//    if (sqrt($safe_input['pirmas']) == $safe_input['antras']) {
+//        var_dump('Geras atsakymas');
+//    } else {
+//        $paklaida = sqrt($safe_input['pirmas']) - $safe_input['antras'];
+//        if ($paklaida < 0) {
+//            var_dump('Saknies neatspejai, suklydai per ' . ($paklaida * -1) . ' per daug');
+//        } else {
+//            var_dump('Saknies neatspejai, suklydai per ' . $paklaida . ' per mazai');
+//
+//        }
+//
+//    }
+//    var_dump('Viskas ok su tavim');
+
+    $file_name = DB_FILE;
+    array_to_file($safe_input, $file_name);
+
 }
 
+/**
+ * if fields are filled in not correctly
+ * @param $form
+ * @param $safe_input
+ * @throws Exception
+ */
 function form_failed($form, $safe_input)
 {
-    var_dump('Confirmed. Adaptas');
+    var_dump('Eik NX');
 }
 
+
+var_dump(file_to_array(DB_FILE));
+
+$saknis = rand(4, 100);
 
 $form = [
     'attr' => [
@@ -34,63 +66,83 @@ $form = [
         'id' => 'form-id'
     ],
     'fields' => [
-        'pirmas' => [
-            'label' => 'Pirmo value: ',
+        'User_name' => [
+            'label' => 'User name: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_text_length'=>[
+                'validate_text_length' => [
                     'min' => 2,
-                    'max' => 10
+                    'max' => 6
                 ]
             ],
             'extra' => [
                 'attr' => [
                     'class' => 'red',
-                    'id' => 'first-name'
+                    'id' => 'first-name',
                 ]
             ]
         ],
-        'antras' => [
-            'label' => 'Value value: ',
+        'password' => [
+            'label' => 'Password: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_text_length'=>[
-                        'min' => 2,
-                        'max' => 10
+                'validate_text_length' => [
+                    'min' => 2,
+                    'max' => 6
                 ]
             ],
             'extra' => [
 
                 'attr' => [
                     'class' => 'red',
-                    'id' => 'first-name'
+                    'id' => 'first-name',
                 ]
             ]
         ],
-        'telefonas' => [
-            'label' => 'Phone: ',
+        'repeat_password' => [
+            'label' => 'Repeat assword: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_is_number',
-                'validate_phone',
-                'validate_text_length'=>[
+                'validate_text_length' => [
                     'min' => 2,
-                    'max' => 20
+                    'max' => 10
                 ]
             ],
             'extra' => [
+
                 'attr' => [
                     'class' => 'red',
-                    'id' => 'first-name'
+                    'id' => 'first-name',
+                    'step' => 'any'
                 ]
             ]
         ],
+//        'telefonas' => [
+//            'label' => 'Phone: ',
+//            'type' => 'text',
+//            'value' => '',
+//            'validate' => [
+//                'validate_not_empty',
+//                'validate_is_number',
+//                'validate_phone',
+//                'validate_text_length'=>[
+//                    'min' => 2,
+//                    'max' => 20
+//                ]
+//            ],
+//            'extra' => [
+//                'attr' => [
+//                    'class' => 'red',
+//                    'id' => 'first-name'
+//                ]
+//            ]
+//        ],
 //        'select' => [
 //            'type' => 'select',
 //            'label' => 'Pasirinkite veiksma:',
@@ -149,8 +201,8 @@ $form = [
     ],
     'validators' => [
         'validate_fields_match' => [
-            'pirmas',
-            'antras'
+            'password',
+            'repeat_password'
         ]
     ],
     'callbacks' => [
@@ -166,7 +218,17 @@ if ($_POST) {
 
 }
 
-var_dump($_POST);
+//if (file_exists($file_name)){
+//    print 'File exists';
+//    return true;
+//}else{
+//    print 'Damn. No such file.';
+//}
+
+
+//array_to_file($safe_input, $file_name);
+
+//var_dump($_POST);
 //var_dump($safe_input);
 //var_dump($form['error']);
 
@@ -181,7 +243,7 @@ var_dump($_POST);
 </head>
 <body>
 <main>
-    <h1>Hack it!</h1>
+    <h1>Registration</h1>
     <h2><?php print $safe_input['first_name'] ?? ''; ?></h2>
     <h2><?php print $safe_input['password'] ?? ''; ?></h2>
     <form method="post">
