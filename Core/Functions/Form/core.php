@@ -15,27 +15,29 @@ function get_filtered_input(array $form): ?array
 }
 
 /**
- * function which validates fields
- * @param array $form
- * @param array $safe_input
+ * funkcija kuri tikrina pacia forma ir sukuria fieldams errorus
+ * @param array $form siunciame forma kuria naudosime
+ * @param array $safe_input isfiltruotas POST masyvas
  * @return bool
  */
 function validate_form(array &$form, array $safe_input): bool
 {
     $success = true;
 
-    foreach ($safe_input as $input_id => $value) {
+    foreach ($form['fields'] as $field_index => &$field) {
+        $field['value'] = $safe_input[$field_index];
 
-        $field = &$form['fields'][$input_id];
-        if ($safe_input[$input_id] != '') {
-            $field['value'] = $value;
-        }
         if (isset($field['validate'])) {
-            foreach ($field['validate'] as $function_key => $function) {
-                if (is_array($function)) {
-                    $valid = $function_key($value, $field, $function);
+            foreach ($field['validate'] as $validator_index => $field_validator) {
+                if (is_array($field_validator)) {
+                    $validator_function = $validator_index;
+                    $validator_params = $field_validator;
+
+                    $valid = $validator_function($field['value'], $field, $validator_params);
                 } else {
-                    $valid = $function($value, $field);
+                    $validator_function = $field_validator;
+
+                    $valid = $validator_function($field['value'], $field);
                 }
                 if (!$valid) {
                     $success = false;
@@ -44,12 +46,19 @@ function validate_form(array &$form, array $safe_input): bool
             }
         }
     }
+
+    //tikrinsim formos lygio validatorius
     if ($success) {
-        foreach ($form['validators'] ?? [] as $function_key => $function) {
-            if (is_array($function)) {
-                $valid = $function_key($safe_input, $form, $function);
+        foreach ($form['validators'] ?? [] as $validator_index => $form_validator) {
+            if (is_array($form_validator)) {
+                $validator_function = $validator_index;
+                $validator_params = $form_validator;
+
+                $valid = $validator_function($safe_input, $form, $validator_params);
             } else {
-                $valid = $function($safe_input, $form);
+                $validator_function = $form_validator;
+
+                $valid = $validator_function($safe_input, $form);
             }
             if (!$valid) {
                 $success = false;
@@ -63,7 +72,6 @@ function validate_form(array &$form, array $safe_input): bool
     } elseif (isset($form['callbacks']['failed']) && !$success) {
         $form['callbacks']['failed']($form, $safe_input);
     }
-
 
     return $success;
 }

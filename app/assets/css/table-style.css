@@ -1,0 +1,8 @@
+td{
+    border: 2px solid black;
+    text-align: center;
+}
+th{
+    border: 2px solid green;
+    padding: 5px;
+}

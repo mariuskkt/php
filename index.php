@@ -38,9 +38,17 @@ function form_success($form, $safe_input)
 //    var_dump('Viskas ok su tavim');
 
     $file_name = DB_FILE;
-    array_to_file($safe_input, $file_name);
+    $data = file_to_array($file_name);
+    $data = $data ? $data : [];
+    $data[] = [
+        'user_name' => $safe_input['user_name'],
+        'password' => $safe_input['password'],
+    ];
+    array_to_file($data, $file_name);
 
+    var_dump(file_to_array($file_name));
 }
+
 
 /**
  * if fields are filled in not correctly
@@ -54,8 +62,6 @@ function form_failed($form, $safe_input)
 }
 
 
-var_dump(file_to_array(DB_FILE));
-
 $saknis = rand(4, 100);
 
 $form = [
@@ -66,8 +72,8 @@ $form = [
         'id' => 'form-id'
     ],
     'fields' => [
-        'User_name' => [
-            'label' => 'User name: ',
+        'user_name' => [
+            'label' => 'User name ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -85,7 +91,7 @@ $form = [
             ]
         ],
         'password' => [
-            'label' => 'Password: ',
+            'label' => 'Password ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -104,7 +110,7 @@ $form = [
             ]
         ],
         'repeat_password' => [
-            'label' => 'Repeat assword: ',
+            'label' => 'Repeat password ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -218,19 +224,6 @@ if ($_POST) {
 
 }
 
-//if (file_exists($file_name)){
-//    print 'File exists';
-//    return true;
-//}else{
-//    print 'Damn. No such file.';
-//}
-
-
-//array_to_file($safe_input, $file_name);
-
-//var_dump($_POST);
-//var_dump($safe_input);
-//var_dump($form['error']);
 
 ?>
 <html lang="en" dir="ltr">
@@ -244,8 +237,6 @@ if ($_POST) {
 <body>
 <main>
     <h1>Registration</h1>
-    <h2><?php print $safe_input['first_name'] ?? ''; ?></h2>
-    <h2><?php print $safe_input['password'] ?? ''; ?></h2>
     <form method="post">
         <?php include 'core/templates/form.tpl.php' ?>
     </form>

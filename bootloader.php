@@ -8,4 +8,4 @@ require 'app/functions/form/validators.php';
 
 require  'core/functions/file.php';
 
-define('DB_FILE', 'app/data/db.txt');
+define('DB_FILE', 'app/data/db.json');

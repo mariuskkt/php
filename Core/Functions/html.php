@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * converts $array['attr'] to string
  * @param array $array

@@ -64,19 +64,22 @@ function validate_space($field_input, &$field)
 
 /**
  *  F-cija, patikrinanti ar fieldai sutampa
- * @param $safe_input isfiltruotas post masyvas
- * @param $form
- * @param $params sutampanciu fieldu indeksu masyvas
+ * @param array $filtered_input isfiltruotas _POST masyvas
+ * @param array $form
+ * @param array $params sutampanciu fieldu indeksu masyvas
  * @return bool
  */
-function validate_fields_match($safe_input, &$form, $params)
+function validate_fields_match(array $filtered_input, array &$form, array $params): bool
 {
     $comparison_field_id = $params[0];
-    $comparison = $safe_input[$comparison_field_id];
+    $comparison = $filtered_input[$comparison_field_id];
 
     foreach ($params as $field_id) {
-        if ($comparison != $safe_input[$field_id]) {
+        if ($comparison != $filtered_input[$field_id]) {
             $form['error'] = 'Fields do not match';
+            $form['fields'][$field_id]['error'] = strtr('This field must match "@field" ', [
+                '@field' => $form['fields'][$comparison_field_id]['label']
+            ]);
             return false;
         }
     }
