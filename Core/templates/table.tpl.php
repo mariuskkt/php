@@ -14,4 +14,6 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<h2><?php print $h2 ?></h2>
+
 

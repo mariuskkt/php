@@ -34,17 +34,19 @@
                     ]) ?>>
                     <?php print $field['value'] ?? '' ?>
                 </textarea>
-                <!--            --><?php //elseif (in_array($field['type'], ['radio'])) : ?>
-                <!--                --><?php //foreach ($field['option'] as $option_id => $option_title): ?>
-                <!--                    <label>-->
-                <!--                        <span>--><?php //print $field['option']['label'] ?><!--</span>-->
-                <!--                        <input --><?php //print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
-//                                'name' => $field_id,
-//                                'type' => $field['type'],
-//                            ]) ?><!--
-                </label>-->
-                <!---->
-                <!--                --><?php //endforeach; ?>
+            <?php elseif (in_array($field['type'], ['radio'])) : ?>
+                <?php foreach ($field['options'] as $option_id => $radio_value): ?>
+                    <label>
+                        <div class="radio">
+                            <span><?php print $radio_value; ?></span>
+                            <input <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
+                                    'name' => $field_id,
+                                    'type' => $field['type'],
+                                    'value' => $option_id
+                                ]) ?>>
+                        </div>
+                    </label>
+                <?php endforeach; ?>
             <?php endif; ?>
         </label>
         <?php if (isset($field['error'])): ?>

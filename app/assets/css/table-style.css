@@ -1,8 +1,11 @@
 td{
-    border: 2px solid black;
+    /*border: 2px solid black;*/
     text-align: center;
+    font-size: 18px;
 }
 th{
-    border: 2px solid green;
+    /*border: 2px solid green;*/
     padding: 5px;
+    color: green;
+    font-size: 25px;
 }
