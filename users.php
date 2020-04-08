@@ -25,7 +25,7 @@ $sum_participants = count($data);
 $h2 = 'Viso apklausoj dalyvavo: ' . $sum_participants;
 
 $statistics = [];
-var_dump($data);
+//var_dump($data);
 foreach ($data as $participant) {
     foreach ($participant as $question_id => $answer) {
         if (!isset($statistics[$question_id])) {
@@ -43,7 +43,7 @@ foreach ($statistics as $question_id => $count) {
         round($count / $sum_participants * 100)
     ];
 }
-var_dump($statistics);
+//var_dump($statistics);
 
 
 //var_dump($table);
@@ -64,6 +64,3 @@ var_dump($statistics);
 </main>
 </body>
 </html>
-
-
-

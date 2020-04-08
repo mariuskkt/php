@@ -38,12 +38,8 @@
                 <?php foreach ($field['options'] as $option_id => $radio_value): ?>
                     <label>
                         <div class="radio">
-                            <span><?php print $radio_value; ?></span>
-                            <input <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
-                                    'name' => $field_id,
-                                    'type' => $field['type'],
-                                    'value' => $option_id
-                                ]) ?>>
+                            <span><?php print $option_id; ?></span>
+                            <input <?php print radio_attr($field, $field_id, $option_id ) ?>>
                         </div>
                     </label>
                 <?php endforeach; ?>

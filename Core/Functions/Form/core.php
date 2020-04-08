@@ -76,4 +76,16 @@ function validate_form(array &$form, array $safe_input): bool
     return $success;
 }
 
-
+/**
+ * takes data values and fills it in to the form values
+ * @param array $form
+ * @param array $data
+ */
+function fill_form(array &$form, array $data): void
+{
+    foreach ($form['fields'] as $field_index => &$field) {
+        if (isset($data[$field_index])) {
+            $field['value'] = $data[$field_index];
+        }
+    }
+}

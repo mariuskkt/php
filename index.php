@@ -20,8 +20,13 @@ function form_success($form, $safe_input)
     ];
     array_to_file($data, $file_name);
 
+    setcookie('submit', 1, time() + (3600), "/");
+    header("Location: /users.php");
 }
 
+if (isset($_COOKIE['submit'])) {
+    header("Location: /users.php");
+}
 
 /**
  * if fields are filled in not correctly
@@ -31,7 +36,16 @@ function form_success($form, $safe_input)
  */
 function form_failed($form, $safe_input)
 {
-    var_dump('Eik NX');
+    $valid_fields = [];
+
+    foreach ($form['fields'] as $field_index => $field) {
+        if (!isset($field['error'])) {
+            $valid_fields[$field_index] = $field['value'];
+        }
+    }
+    $data = json_encode($valid_fields);
+    setcookie('data', $data, time() + 3600);
+
 }
 
 
@@ -43,72 +57,79 @@ $form = [
         'id' => 'form-id'
     ],
     'fields' => [
-//        'user_name' => [
-//            'label' => 'User name ',
-//            'type' => 'text',
-//            'value' => '',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_text_length' => [
-//                    'min' => 2,
-//                    'max' => 6
-//                ]
-//            ],
-//            'extra' => [
-//                'attr' => [
-//                    'class' => 'red',
-//                    'id' => 'first-name',
-//                ]
-//            ]
-//        ],
-//        'password' => [
-//            'label' => 'Password ',
-//            'type' => 'text',
-//            'value' => '',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_text_length' => [
-//                    'min' => 2,
-//                    'max' => 6
-//                ]
-//            ],
-//            'extra' => [
-//
-//                'attr' => [
-//                    'class' => 'red',
-//                    'id' => 'first-name',
-//                ]
-//            ]
-//        ],
-//        'repeat_password' => [
-//            'label' => 'Repeat password ',
-//            'type' => 'text',
-//            'value' => '',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_text_length' => [
-//                    'min' => 2,
-//                    'max' => 10
-//                ]
-//            ],
-//            'extra' => [
-//
-//                'attr' => [
-//                    'class' => 'red',
-//                    'id' => 'first-name',
-//                    'step' => 'any'
-//                ]
-//            ]
-//        ],
+        'user_name' => [
+            'label' => 'User name ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+                'validate_text_length' => [
+                    'min' => 2,
+                    'max' => 6
+                ]
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'password' => [
+            'label' => 'Password ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+                'validate_text_length' => [
+                    'min' => 2,
+                    'max' => 6
+                ]
+            ],
+            'extra' => [
+
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'repeat_password' => [
+            'label' => 'Repeat password ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+                'validate_text_length' => [
+                    'min' => 2,
+                    'max' => 10
+                ]
+            ],
+            'extra' => [
+
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                    'step' => 'any'
+                ]
+            ]
+        ],
         'question_1' => [
             'type' => 'radio',
             'label' => 'Ar laikai kardana?',
+            'value' => '',
             'validate' => [
                 'validate_not_empty'
             ],
             'options' => [
-                'taip' => 'Taip',
-                'ne' => 'Ne'
+                'taip' => [
+                    'value' => 'taip',
+                    'label' => 'TAIP'
+                ],
+                'ne' => [
+                    'value' => 'ne',
+                    'label' => 'TAIP'
+                ]
             ],
             'extra' => [
                 'attr' => [
@@ -119,12 +140,19 @@ $form = [
         'question_2' => [
             'type' => 'radio',
             'label' => 'Ar pili į baką?',
+            'value' => '',
             'validate' => [
                 'validate_not_empty'
             ],
             'options' => [
-                'taip' => 'Taip',
-                'ne' => 'Ne'
+                'taip' => [
+                    'value' => 'taip',
+                    'label' => 'TAIP'
+                ],
+                'ne' => [
+                    'value' => 'ne',
+                    'label' => 'TAIP'
+                ]
             ],
             'extra' => [
                 'attr' => [
@@ -135,12 +163,19 @@ $form = [
         'question_3' => [
             'type' => 'radio',
             'label' => 'Ar rūkai žolelių arbatą?',
+            'value' => '',
             'validate' => [
                 'validate_not_empty'
             ],
             'options' => [
-                'taip' => 'Taip',
-                'ne' => 'Ne'
+                'taip' => [
+                    'value' => 'taip',
+                    'label' => 'TAIP'
+                ],
+                'ne' => [
+                    'value' => 'ne',
+                    'label' => 'TAIP'
+                ]
             ],
             'extra' => [
                 'attr' => [
@@ -169,7 +204,7 @@ $form = [
 //            ]
 //        ],
 //        'select' => [
-//            'type' => 'radio',
+//            'type' => 'select',
 //            'label' => 'Pasirinkite veiksma:',
 //            'value' => '',
 //            'validate' => [
@@ -225,12 +260,12 @@ $form = [
             ]
         ]
     ],
-//    'validators' => [
-//        'validate_fields_match' => [
-//            'password',
-//            'repeat_password'
-//        ]
-//    ],
+    'validators' => [
+        'validate_fields_match' => [
+            'password',
+            'repeat_password'
+        ]
+    ],
     'callbacks' => [
         'success' => 'form_success',
         'failed' => 'form_failed'
@@ -241,7 +276,23 @@ $form = [
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
-    var_dump($safe_input);
+}
+
+
+if (!isset($_COOKIE['user_id'])) {
+    $cookie_value = rand(0, 2);
+    setcookie('user_id', $cookie_value, time() + (3600), "/");
+    var_dump('sukurtas useris' . 'tokiu id:' . $cookie_value);
+    setcookie('visits', '1', time() + (3600), "/");
+} else {
+    var_dump('useris rastas: ' . $_COOKIE['user_id']);
+    setcookie('visits', $_COOKIE['visits'] + 1, time() + (3600), "/");
+}
+
+if (isset($_COOKIE['data'])) {
+    $data = json_decode($_COOKIE['data'], true);
+
+    fill_form($form, $data);
 }
 
 ?>
