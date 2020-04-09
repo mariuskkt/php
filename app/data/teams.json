@@ -1,0 +1,28 @@
+[
+  {
+    "team_name": "agurkai",
+    "players": [
+      {
+        "nickname": "agurkas",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "team_name": "kamuoliai",
+    "players": [
+      {
+        "nickname": "kiausas",
+        "score": 0
+      },
+      {
+        "nickname": null,
+        "score": 0
+      },
+      {
+        "nickname": "abuolys",
+        "score": 0
+      }
+    ]
+  }
+]

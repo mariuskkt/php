@@ -82,8 +82,51 @@ function validate_select($field_input, array &$field)
 {
     if (!isset($field['option'][$field_input])) {
         $field['error'] = 'Neapipisi, lopas';
+//        var_dump($field['option'][$field_input]);
 
         return false;
+    }
+
+    return true;
+}
+
+/**
+ * checks if team member with such a name already exists
+ * @param $safe_input
+ * @param $form
+ * @return bool
+ */
+function validate_player($safe_input, &$form)
+{
+    $teams = file_to_array(TEAMS_DB);
+    $team_id = $safe_input['team'];
+    $players = $teams[$team_id]['players'];
+
+    foreach ($players as $player_id => $player_attr) {
+        if ($player_attr['nickname'] == $safe_input['nickname']) {
+            $form['error'] = 'Tokia darzove komandoj jau yra';
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * checks if a team name from input doesn't exist in db
+ * @param $field_input
+ * @param $field
+ * @return bool
+ */
+function validate_team($field_input, array &$field): bool
+{
+    $data = file_to_array(TEAMS_DB);
+
+    foreach ($data ?: [] as $data_index => $data_value) {
+        if ($field_input == $data_value['team_name']) {
+            $field['error'] = 'Team with such name already exist';
+
+            return false;
+        }
     }
 
     return true;

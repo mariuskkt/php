@@ -6,6 +6,8 @@ main {
     display: flex;
     flex-direction: column;
     padding: 50px 150px;
+    align-items: center;
+    justify-content: center;
 }
 
 form {
