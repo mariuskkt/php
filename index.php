@@ -281,12 +281,12 @@ if ($_POST) {
 
 if (!isset($_COOKIE['user_id'])) {
     $cookie_value = rand(0, 2);
-    setcookie('user_id', $cookie_value, time() + (3600), "/");
+    setcookie('user_id', $cookie_value, time() + (3600));
     var_dump('sukurtas useris' . 'tokiu id:' . $cookie_value);
-    setcookie('visits', '1', time() + (3600), "/");
+    setcookie('visits', '1', time() + (3600));
 } else {
     var_dump('useris rastas: ' . $_COOKIE['user_id']);
-    setcookie('visits', $_COOKIE['visits'] + 1, time() + (3600), "/");
+    setcookie('visits', $_COOKIE['visits'] + 1, time() + (3600));
 }
 
 if (isset($_COOKIE['data'])) {

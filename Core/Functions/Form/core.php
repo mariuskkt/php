@@ -4,7 +4,7 @@
 function get_filtered_input(array $form): ?array
 {
     $filter_params = [];
-    foreach ($form['fields'] as $field_index => $field_value) {
+    foreach ($form['fields'] ?? [] as $field_index => $field_value) {
         if (isset($field_value['filter'])) {
             $filter_params[$field_index] = $field_value['filter'];
         } else {
@@ -24,7 +24,7 @@ function validate_form(array &$form, array $safe_input): bool
 {
     $success = true;
 
-    foreach ($form['fields'] as $field_index => &$field) {
+    foreach ($form['fields'] ?? [] as $field_index => &$field) {
         $field['value'] = $safe_input[$field_index];
 
         if (isset($field['validate'])) {

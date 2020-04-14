@@ -24,18 +24,18 @@
  * @param $params
  * @return bool
  */
-//function validate_18_to_100($field_input, array &$field)
-//{
-//    if ($field_input > 100) {
-//        $field['error'] = 'Too old';
-//        return false;
-//    } elseif ($field_input < 18) {
-//        $field['error'] = 'Too young';
-//        return false;
-//    }
-//
-//    return true;
-//}
+function validate_18_to_100($field_input, array &$field)
+{
+    if ($field_input > 100) {
+        $field['error'] = 'Too old';
+        return false;
+    } elseif ($field_input < 18) {
+        $field['error'] = 'Too young';
+        return false;
+    }
+
+    return true;
+}
 
 /**
  *
@@ -127,6 +127,36 @@ function validate_team($field_input, array &$field): bool
 
             return false;
         }
+    }
+
+    return true;
+}
+
+/**
+ * funkcija validuoja ar toks zaidejas egzistuoja datoj
+ * @param $safe_input
+ * @param $form
+ * @return bool
+ */
+function validate_kick(array $safe_input, array &$form): bool
+{
+    $data = file_to_array(TEAMS_DB) ?: [];
+    $found = false;
+
+    if (isset($_SESSION['team_id'])) {
+        $team = $data[$_SESSION['team_id']];
+
+        foreach ($team['players'] as $player_id) {
+            if ($player_id['nickname'] == $_SESSION['nick_name']) {
+                $found = true;
+                break;
+            }
+        }
+    }
+    if (!$found) {
+        $form['error'] = 'Such player doen\'t exist';
+
+        return false;
     }
 
     return true;

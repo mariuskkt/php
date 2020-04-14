@@ -50,7 +50,7 @@
         <?php endif; ?>
     <?php endforeach; ?>
     <?php foreach ($form['buttons'] ?? [] as $button_id => $button): ?>
-        <button <?php print html_attr(($button['extra']['attr']) ?? [] +
+        <button <?php print html_attr(($button['extra']['attr'] ?? []) +
             [
                 'name' => 'action',
                 'value' => $button_id

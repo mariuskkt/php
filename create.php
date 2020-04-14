@@ -62,18 +62,20 @@ $form = [
     ]
 ];
 
-$teams = [
+$nav = [
     [
-        'name' => 'Bybiai',
-        'players' => [
-            [
-                'nick' => 'bybis',
-                'score' => 1
-            ]
-        ]
+        'link' => '/create.php',
+        'name' => 'CREATE A TEAM'
+    ],
+    [
+        'link' => '/join.php',
+        'name' => 'JOIN TEAM'
+    ],
+    [
+        'link' => '/play.php',
+        'name' => 'Just click and PLAY'
     ]
 ];
-
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
@@ -81,7 +83,6 @@ if ($_POST) {
 }
 
 ?>
-
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -91,6 +92,7 @@ if ($_POST) {
     </style>
 </head>
 <body>
+<?php include 'app/templates/nav.php' ?>
 <main>
     <h1>Registration</h1>
     <section>

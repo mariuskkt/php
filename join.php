@@ -18,11 +18,20 @@ function form_success(&$form, $safe_input)
     ];
 
     array_to_file($data, TEAMS_DB);
+
+
+    $team_name = $safe_input['team'];
+    $nickname = $safe_input['nickname'];
+
+    session_start();
+
+    $_SESSION['team_id'] = $team_name;
+    $_SESSION['nick_name'] = $nickname;
+    var_dump($_SESSION);
+    var_dump($_COOKIE);
+
+    header("Location: /play.php");
 }
-
-;
-
-
 $form = [
     'fields' => [
         'team' => [
@@ -31,7 +40,6 @@ $form = [
             'value' => '',
             'validate' => [
                 'validate_select',
-                'validate_not_empty',
             ],
             'option' => [
             ],
@@ -75,20 +83,47 @@ $form = [
         'success' => 'form_success',
     ],
     'validators' => [
-        'validate_player'
+        'validate_player',
+        'validate_kick'
+    ]
+];
+
+$nav = [
+    [
+        'link' => '/create.php',
+        'name' => 'CREATE A TEAM'
+    ],
+    [
+        'link' => '/join.php',
+        'name' => 'JOIN TEAM'
+    ],
+    [
+        'link' => '/play.php',
+        'name' => 'Just click and PLAY'
     ]
 ];
 
 $teams = file_to_array(TEAMS_DB);
+
+//idedu komandos pavadinima tarp select optionu
 foreach ($teams as $team_id => $team) {
     $form['fields']['team']['option'][$team_id] = $team['team_name'];
 }
-//var_dump($teams);
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
+
+$display_form = true;
+
+//panaikinu forma jei cookie aktyvus ir spausdinu teksta
+if (isset($_COOKIE['team_id']) && $_COOKIE['nick_name']) {
+    $display_form = false;
+    $text = 'Sveikas, ' . $_COOKIE['nick_name'] . ', tu esi registruotas '
+        . $teams[$_COOKIE['team_id']]['team_name'] . ' komandoj';
+}
+
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -99,12 +134,17 @@ if ($_POST) {
     </style>
 </head>
 <body>
+<?php include 'app/templates/nav.php' ?>
 <main>
-    <h1>Registration</h1>
     <section>
-        <form method="post">
-            <?php include 'core/templates/form.tpl.php' ?>
-        </form>
+        <?php if ($display_form) : ?>
+            <h1>Registration</h1>
+            <form method="post">
+                <?php include 'core/templates/form.tpl.php' ?>
+            </form>
+        <?php elseif (!$display_form) : ?>
+            <h2><?php print $text ?></h2>
+        <?php endif; ?>
     </section>
 </main>
 </body>
