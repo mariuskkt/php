@@ -39,7 +39,7 @@ function validate_is_positive($field_input, array &$field): bool
  */
 function validate_not_empty($field_input, &$field)
 {
-    if (empty($field_input)) {
+    if (strlen($field_input) == 0) {
         $field['error'] = 'field is empty';
         return false;
     }
@@ -132,3 +132,74 @@ function validate_phone($field_input, array &$field): bool
 
 }
 
+/**
+ * validates if email is unique
+ * @param $field_input
+ * @param array $field
+ * @return bool
+ */
+function validate_email_unique($field_input, array &$field): bool
+{
+    $data = file_to_array('app/data/users.json') ?: [];
+    $found = false;
+
+    foreach ($data as $user_id) {
+        if ($user_id['email'] == $field_input) {
+            $found = true;
+            break;
+        }
+    }
+    if ($found) {
+        $field['error'] = 'Such email already exists';
+
+        return false;
+    }
+
+    return true;
+}
+
+
+/**
+ * validates if login matches db
+ * @param array $safe_input
+ * @param array $field
+ * @return bool
+ */
+function validate_login(array $safe_input, array &$field): bool
+{
+    $data = file_to_array('app/data/users.json') ?: [];
+
+    $found = false;
+
+    if (isset($safe_input['email'])) {
+        foreach ($data as $user_id) {
+            if ($user_id['email'] == $safe_input['email'] && $user_id['password'] == $safe_input['password']) {
+                $found = true;
+                break;
+            }
+        }
+    }
+    if (!$found) {
+        $field['error'] = 'Wrong login credentials';
+
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * validates if email field input is email
+ * @param $field_input
+ * @param array $field
+ * @return bool
+ */
+function validate_email($field_input, array &$field): bool
+{
+    $pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i';
+    if (!preg_match_all($pattern, $field_input)) {
+        $field['error'] = 'Such email address is not valid';
+        return false;
+    }
+    return true;
+}

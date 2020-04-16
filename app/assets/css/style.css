@@ -51,6 +51,7 @@ input {
     border: none;
     box-shadow: 0 0 5px darkgrey;
     padding: 5px 10px;
+    width: 100%;
 }
 
 textarea {
@@ -118,6 +119,10 @@ img {
     align-items: center;
 }
 
+nav{
+    display: flex;
+    flex-direction: row-reverse;
+}
 nav ul {
     list-style-type: none;
     display: flex;
@@ -148,4 +153,22 @@ nav li:hover{
 }
 nav li:hover a{
     color: green;
+}
+
+.pixels{
+    width: 510px;
+    height: 510px;
+    border: 2px solid black;
+    position: relative;
+}
+.single-pixel{
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    position: absolute;
+}
+
+.single-pixel:hover{
+    transform: scale(3);
+    cursor: pointer;
 }

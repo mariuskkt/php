@@ -8,6 +8,8 @@ require 'app/functions/form/validators.php';
 
 require  'core/functions/file.php';
 
+require  'core/functions/auth.php';
+
 define('DB_FILE', 'app/data/db.json');
 define('TEAMS_DB', 'app/data/teams.json');
 

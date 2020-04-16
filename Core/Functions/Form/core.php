@@ -24,7 +24,7 @@ function validate_form(array &$form, array $safe_input): bool
 {
     $success = true;
 
-    foreach ($form['fields'] ?? [] as $field_index => &$field) {
+    foreach ($form['fields'] as $field_index => &$field) {
         $field['value'] = $safe_input[$field_index];
 
         if (isset($field['validate'])) {

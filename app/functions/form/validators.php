@@ -47,10 +47,10 @@ function validate_18_to_100($field_input, array &$field)
 function validate_field_range($field_input, array &$field, $params)
 {
     if ($field_input > $params['max']) {
-        $field['error'] = 'Too old';
+        $field['error'] = 'Number is too high';
         return false;
     } elseif ($field_input < $params['min']) {
-        $field['error'] = 'Too young';
+        $field['error'] = 'Number is too low';
         return false;
     }
 
@@ -157,6 +157,37 @@ function validate_kick(array $safe_input, array &$form): bool
         $form['error'] = 'Such player doen\'t exist';
 
         return false;
+    }
+
+    return true;
+}
+
+/**
+ * validates if pixels are owned by another user
+ * @param $filtered_input
+ * @param array $form
+ * @param $params
+ * @return bool
+ */
+function validate_pixels($filtered_input, array &$form, $params)
+{
+    $file_name = 'app/data/users.json';
+    $users = file_to_array($file_name) ?: [];
+
+    $x = $filtered_input[$params[0]];
+    $y = $filtered_input[$params[1]];
+
+    foreach ($users as $user) {
+        if ($user['email'] != $_SESSION['email']) {
+            foreach ($user['pixels'] as $pixel) {
+                if ($pixel['x'] == $x && $pixel['y'] == $y) {
+                    $form['fields']['x']['error'] = 'This pixel is owned by another user';
+                    $form['fields']['y']['error'] = 'This pixel is owned by another user';
+
+                    return false;
+                }
+            }
+        }
     }
 
     return true;

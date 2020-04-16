@@ -5,7 +5,7 @@
 
         <label>
             <span><?php print $field['label'] ?: [] ?></span>
-            <?php if (in_array($field['type'], ['text', 'password', 'number'])): ?>
+            <?php if (in_array($field['type'], ['text', 'password', 'number', 'email', 'color'])): ?>
                 <input <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
                         'type' => $field['type'],

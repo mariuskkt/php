@@ -10,62 +10,55 @@ require 'bootloader.php';
  */
 function form_success($form, $safe_input)
 {
-    $file_name = DB_FILE;
-    $data = file_to_array($file_name);
-    $data = $data ? $data : [];
-    $data[] = [
-        'question_1' => $safe_input['question_1'],
-        'question_2' => $safe_input['question_2'],
-        'question_3' => $safe_input['question_3']
-    ];
-    array_to_file($data, $file_name);
+    $file_name = 'app/data/users.json';
 
-    setcookie('submit', 1, time() + (3600), "/");
-    header("Location: /users.php");
-}
+    $data = file_to_array($file_name) ?: [];
 
-if (isset($_COOKIE['submit'])) {
-    header("Location: /users.php");
-}
-
-/**
- * if fields are filled in not correctly
- * @param $form
- * @param $safe_input
- * @throws Exception
- */
-function form_failed($form, $safe_input)
-{
-    $valid_fields = [];
-
-    foreach ($form['fields'] as $field_index => $field) {
-        if (!isset($field['error'])) {
-            $valid_fields[$field_index] = $field['value'];
+    foreach ($data as &$users) {
+        if ($users['email'] == $_SESSION['email']) {
+            $users['pixels'][] = [
+                'x' => $safe_input['x'],
+                'y' => $safe_input['y'],
+                'color' => $safe_input['color']
+            ];
         }
     }
-    $data = json_encode($valid_fields);
-    setcookie('data', $data, time() + 3600);
 
+    array_to_file($data, $file_name);
 }
 
+$nav = [
+    [
+        'link' => '/index.php',
+        'name' => 'Home'
+    ],
+    [
+        'link' => '/register.php',
+        'name' => 'Register'
+    ],
+    [
+        'link' => '/login.php',
+        'name' => 'Login'
+    ],
+    [
+        'link' => '/logout.php',
+        'name' => 'logout'
+    ]
+];
 
 $form = [
-    'attr' => [
-        'action' => 'index.php',
-        'method' => 'POST',
-        'class' => 'my-form',
-        'id' => 'form-id'
-    ],
     'fields' => [
-        'user_name' => [
-            'label' => 'User name ',
-            'type' => 'text',
+        'x' => [
+            'label' => 'X: ',
+            'type' => 'number',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_text_length' => [
-                    'min' => 2,
-                    'max' => 6
+                'validate_is_number',
+                'validate_is_positive',
+                'validate_field_range' => [
+                    'min' => 0,
+                    'max' => 500
                 ]
             ],
             'extra' => [
@@ -75,184 +68,46 @@ $form = [
                 ]
             ]
         ],
-        'password' => [
-            'label' => 'Password ',
-            'type' => 'text',
+        'y' => [
+            'label' => 'Y: ',
+            'type' => 'number',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
-                'validate_text_length' => [
-                    'min' => 2,
-                    'max' => 6
+                'validate_is_number',
+                'validate_is_positive',
+                'validate_field_range' => [
+                    'min' => 0,
+                    'max' => 500
                 ]
             ],
             'extra' => [
-
                 'attr' => [
                     'class' => 'red',
                     'id' => 'first-name',
                 ]
             ]
         ],
-        'repeat_password' => [
-            'label' => 'Repeat password ',
-            'type' => 'text',
+        'color' => [
+            'label' => 'Choose color: ',
+            'type' => 'color',
             'value' => '',
             'validate' => [
-                'validate_not_empty',
-                'validate_text_length' => [
-                    'min' => 2,
-                    'max' => 10
-                ]
-            ],
-            'extra' => [
 
-                'attr' => [
-                    'class' => 'red',
-                    'id' => 'first-name',
-                    'step' => 'any'
-                ]
-            ]
-        ],
-        'question_1' => [
-            'type' => 'radio',
-            'label' => 'Ar laikai kardana?',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'options' => [
-                'taip' => [
-                    'value' => 'taip',
-                    'label' => 'TAIP'
-                ],
-                'ne' => [
-                    'value' => 'ne',
-                    'label' => 'TAIP'
-                ]
             ],
             'extra' => [
                 'attr' => [
-
+                    'class' => 'color',
+                    'id' => 'color',
                 ]
             ]
         ],
-        'question_2' => [
-            'type' => 'radio',
-            'label' => 'Ar pili į baką?',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'options' => [
-                'taip' => [
-                    'value' => 'taip',
-                    'label' => 'TAIP'
-                ],
-                'ne' => [
-                    'value' => 'ne',
-                    'label' => 'TAIP'
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-
-                ]
-            ]
-        ],
-        'question_3' => [
-            'type' => 'radio',
-            'label' => 'Ar rūkai žolelių arbatą?',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty'
-            ],
-            'options' => [
-                'taip' => [
-                    'value' => 'taip',
-                    'label' => 'TAIP'
-                ],
-                'ne' => [
-                    'value' => 'ne',
-                    'label' => 'TAIP'
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-
-                ]
-            ]
-        ],
-//        'telefonas' => [
-//            'label' => 'Phone: ',
-//            'type' => 'text',
-//            'value' => '',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_is_number',
-//                'validate_phone',
-//                'validate_text_length'=>[
-//                    'min' => 2,
-//                    'max' => 20
-//                ]
-//            ],
-//            'extra' => [
-//                'attr' => [
-//                    'class' => 'red',
-//                    'id' => 'first-name'
-//                ]
-//            ]
-//        ],
-//        'select' => [
-//            'type' => 'select',
-//            'label' => 'Pasirinkite veiksma:',
-//            'value' => '',
-//            'validate' => [
-//                'choose_action',
-//                'validate_select'
-//            ],
-//            'option' => [
-//                'sudetis' => 'Sudetis',
-//                'atimtis' => 'Atimtis',
-//                'daugyba' => 'Daugyba'
-//            ],
-//            'extra' => [
-//                'attr' => [
-//
-//                ]
-//            ]
-//        ]
     ],
-
-//        'age' => [
-//            'label' => 'Your age:',
-//            'type' => 'number',
-//            'value' => '',
-//            'validate' => [
-//                'validate_not_empty',
-//                'validate_is_number',
-//                'validate_is_positive',
-//                'validate_max_100',
-//                'validate_18_to_100',
-//                'validate_field_range' =>
-//                    [
-//                        'min' => 18,
-//                        'max' => 100
-//                    ]
-//            ],
-//            'extra' => [
-//                'attr' => [
-//                    'class' => 'green',
-//                    'id' => 'pass'
-//                ]
-//            ]
-//        ]
-//    ],
     'buttons' => [
         'button' => [
             'name' => 'action',
             'type' => 'submit',
-            'title' => 'Žiūrėti statiska',
+            'title' => 'Paint your pixels',
             'extra' => [
                 'attr' => [
 
@@ -260,41 +115,51 @@ $form = [
             ]
         ]
     ],
-    'validators' => [
-        'validate_fields_match' => [
-            'password',
-            'repeat_password'
-        ]
-    ],
     'callbacks' => [
         'success' => 'form_success',
-        'failed' => 'form_failed'
+//        'failed' => 'form_failed'
+    ],
+    'validators' => [
+        'validate_pixels' => [
+            'x',
+            'y'
+        ]
     ]
 ];
 
+
+$logged_in = is_logged_in();
+
+if ($logged_in) {
+
+    unset($nav[1], $nav[2]);
+
+    $file_name = 'app/data/users.json';
+    $data = file_to_array($file_name);
+
+    foreach ($data as $user_id) {
+        if ($user_id['email'] == $_SESSION['email']) {
+            $name = $user_id['user_name'];
+            $text = 'Welcome back, ' . $name;
+        }
+    }
+    $pixels = true;
+} else {
+    $pixels = false;
+    $text = 'Your are not logged in';
+    unset($nav[3]);
+}
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
 
+$file_name = 'app/data/users.json';
+$users = file_to_array($file_name) ?: [];
 
-if (!isset($_COOKIE['user_id'])) {
-    $cookie_value = rand(0, 2);
-    setcookie('user_id', $cookie_value, time() + (3600));
-    var_dump('sukurtas useris' . 'tokiu id:' . $cookie_value);
-    setcookie('visits', '1', time() + (3600));
-} else {
-    var_dump('useris rastas: ' . $_COOKIE['user_id']);
-    setcookie('visits', $_COOKIE['visits'] + 1, time() + (3600));
-}
 
-if (isset($_COOKIE['data'])) {
-    $data = json_decode($_COOKIE['data'], true);
-
-    fill_form($form, $data);
-}
-
+var_dump($_POST);
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -305,11 +170,30 @@ if (isset($_COOKIE['data'])) {
     </style>
 </head>
 <body>
+<?php include 'app/templates/nav.php' ?>
 <main>
-    <h1>Registration</h1>
-    <form method="post">
-        <?php include 'core/templates/form.tpl.php' ?>
-    </form>
+    <h1><?php print $text ?></h1>
+    <?php if ($pixels) : ?>
+        <div class="form">
+            <form method="post">
+                <?php include 'core/templates/form.tpl.php' ?>
+            </form>
+        </div>
+        <div class="pixels">
+            <?php foreach ($users as $user_id) : ?>
+                <?php foreach ($user_id['pixels'] ?? [] as $pixel_id): ?>
+                    <div
+                            style="
+                                    top:<?php print $pixel_id['x'] ?>px;
+                                    left:<?php print $pixel_id['y'] ?>px;
+                                    background-color:<?php print $pixel_id['color'] ?>;
+                                    "
+                            class="single-pixel">
+                    </div>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 </main>
 </body>
 </html>
