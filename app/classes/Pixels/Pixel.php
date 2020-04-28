@@ -10,6 +10,12 @@ class Pixel
      * @var
      */
     private $data;
+    private $properties = [
+        'x',
+        'y',
+        'color',
+        'email'
+    ];
 
     /**
      * Pixel constructor.
@@ -45,7 +51,7 @@ class Pixel
     /**
      * sets y in data array
      * @param int $y
-     * @return int
+     * @return void
      */
     public function setY(int $y): void
     {
@@ -65,7 +71,7 @@ class Pixel
     /**
      * sets color in data array
      * @param string $color
-     * @return string
+     * @return void
      */
     public function setColor(string $color): void
     {
@@ -106,24 +112,31 @@ class Pixel
      */
     public function setData(array $data): void
     {
-        foreach ($data as $key => $value) {
-            switch ($key) {
-                case 'x':
-                    $this->setX($value);
-                    break;
-                case 'y':
-                    $this->setY($value);
-                    break;
-                case 'color':
-                    $this->setColor($value);
-                    break;
-                case 'email':
-                    $this->setEmail($value);
-                    break;
-                default:
-                    throw new Exception("tokio indexo $key nera loxas");
+        foreach ($this->properties as $property) {
+            if (isset($data[$property])) {
+                $method = 'set' . str_replace('_', '', $property);
+                $this->{$method}($data[$property]);
             }
         }
+    }
+//        foreach ($data as $key => $value) {
+//            switch ($key) {
+//                case 'x':
+//                    $this->setX($value);
+//                    break;
+//                case 'y':
+//                    $this->setY($value);
+//                    break;
+//                case 'color':
+//                    $this->setColor($value);
+//                    break;
+//                case 'email':
+//                    $this->setEmail($value);
+//                    break;
+//                default:
+//                    throw new Exception("tokio indexo $key nera loxas");
+//            }
+//        }
 //        if (isset($data['x'])) {
 //            $this->setX($data['x']);
 //        }
@@ -136,7 +149,6 @@ class Pixel
 //        if (isset($data['email'])) {
 //            $this->setX($data['email']);
 //        }
-    }
 
     /**
      * returns results array from data
@@ -144,11 +156,77 @@ class Pixel
      */
     public function getData(): array
     {
-        return [
-            'x' => $this->getX(),
-            'y' => $this->getY(),
-            'color' => $this->getColor(),
-            'email' => $this->getEmail()
-        ];
+        $results = [];
+
+        foreach ($this->properties as $property) {
+            $method = 'get' . str_replace('_', '', $property);
+
+            $results[$property] = $this->{$method}();
+        }
+        return $results;
+    }
+
+    /**
+     * Calls out when property is given
+     * @param $property_key
+     * @param $value
+     */
+    public function __set($property_key, $value): void
+    {
+        if ($this->setterExits($property_key)) {
+            $method = 'set' . str_replace('_', '', $property_key);
+
+            $this->{$method}($value);
+        } else {
+            var_dump('such setter doesn\'t exist');
+        }
+    }
+
+    /**
+     * Checks if setter exists
+     * @param $property_key
+     * @return bool
+     */
+    private function setterExits($property_key): bool
+    {
+        $method = 'set' . str_replace('_', '', $property_key);
+
+        if (method_exists($this, $method)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if such getter exists
+     * @param $property_key
+     * @return mixed
+     */
+    public function __get($property_key)
+    {
+        if ($this->getterExists($property_key)) {
+            $method = 'get' . str_replace('_', '', $property_key);
+
+            return $this->{$method}();
+        }else{
+            var_dump('Such getter doesn\'t exist');
+        }
+    }
+
+    /**
+     * checks if getter exists
+     * @param $property_key
+     * @return bool
+     */
+    private function getterExists($property_key): bool
+    {
+        $method = 'set' . str_replace('_', '', $property_key);
+
+        if (method_exists($this, $method)) {
+            return true;
+        }
+
+        return false;
     }
 }

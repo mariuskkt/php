@@ -5,8 +5,8 @@ require '../bootloader.php';
 /**
  * if fields are filled in correctly
  * @param $form
- * @param $safe_input
- * @return array
+ * @param array $safe_input
+ * @return void
  * @throws Exception
  */
 function form_success($form, array $safe_input): void
@@ -145,6 +145,9 @@ $conditions = [];
 
 $pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
 
+$test = new \App\Pixels\Pixel();
+$test->x=100;
+var_dump($test->b);
 ?>
 <html lang="en" dir="ltr">
 <head>
