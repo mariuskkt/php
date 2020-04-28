@@ -98,7 +98,7 @@ if ($_POST) {
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="app/assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
     <title></title>
     <style>
     </style>

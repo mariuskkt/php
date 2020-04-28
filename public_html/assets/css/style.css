@@ -5,7 +5,6 @@ img {
 main {
     display: flex;
     flex-direction: column;
-    padding: 50px 150px;
     align-items: center;
     justify-content: center;
 }
@@ -119,21 +118,24 @@ img {
     align-items: center;
 }
 
-nav{
+nav {
     display: flex;
     flex-direction: row-reverse;
 }
+
 nav ul {
     list-style-type: none;
     display: flex;
 }
-nav li{
+
+nav li {
     margin-right: 20px;
     padding: 10px 20px;
     box-shadow: 0 0 4px 1px darkred;
     border-radius: 30px;
     transition: 0.4s;
 }
+
 nav a {
     color: darkred;
     text-decoration: none;
@@ -141,34 +143,51 @@ nav a {
     transition: 0.4s;
 }
 
-nav a:hover{
+nav a:hover {
     color: green;
 }
 
-nav li:hover{
+nav li:hover {
     background-color: darkred;
 }
-.active{
-    color: green;
-}
-nav li:hover a{
+
+.active {
     color: green;
 }
 
-.pixels{
+nav li:hover a {
+    color: green;
+}
+
+.pixels {
     width: 510px;
     height: 510px;
     border: 2px solid black;
     position: relative;
+    margin-right: 50px;
 }
-.single-pixel{
+
+.single-pixel {
     height: 10px;
     width: 10px;
     display: inline-block;
     position: absolute;
 }
 
-.single-pixel:hover{
-    transform: scale(3);
+.single-pixel:hover {
+    transform: scale(2);
     cursor: pointer;
+}
+
+.single-pixel:hover .name {
+    display: inline-block;
+}
+.pixels-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name {
+    display: none;
+    font-size: 10px;
 }

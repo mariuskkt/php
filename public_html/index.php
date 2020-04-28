@@ -1,30 +1,24 @@
 <?php
 
-require 'bootloader.php';
+require '../bootloader.php';
 
 /**
  * if fields are filled in correctly
  * @param $form
  * @param $safe_input
+ * @return array
  * @throws Exception
  */
-function form_success($form, $safe_input)
+function form_success($form, array $safe_input): void
 {
-    $file_name = 'app/data/users.json';
 
-    $data = file_to_array($file_name) ?: [];
+    $safe_input['email'] = $_SESSION['email'];
 
-    foreach ($data as &$users) {
-        if ($users['email'] == $_SESSION['email']) {
-            $users['pixels'][] = [
-                'x' => $safe_input['x'],
-                'y' => $safe_input['y'],
-                'color' => $safe_input['color']
-            ];
-        }
-    }
+    $data = new \App\Pixels\Pixel($safe_input);
 
-    array_to_file($data, $file_name);
+    App\App::$db->insertRow('pixels', $data->getData());
+
+    var_dump($data);
 }
 
 $nav = [
@@ -125,27 +119,19 @@ $form = [
             'y'
         ]
     ]
+
 ];
 
-
-$logged_in = is_logged_in();
+$logged_in = App\App::$session->getUser();
 
 if ($logged_in) {
 
     unset($nav[1], $nav[2]);
 
-    $file_name = 'app/data/users.json';
-    $data = file_to_array($file_name);
-
-    foreach ($data as $user_id) {
-        if ($user_id['email'] == $_SESSION['email']) {
-            $name = $user_id['user_name'];
-            $text = 'Welcome back, ' . $name;
-        }
-    }
-    $pixels = true;
+    $text = 'Welcome back, ' . $logged_in['user_name'];
+    $show_form = true;
 } else {
-    $pixels = false;
+    $show_form = false;
     $text = 'Your are not logged in';
     unset($nav[3]);
 }
@@ -155,33 +141,27 @@ if ($_POST) {
     validate_form($form, $safe_input);
 }
 
-$file_name = 'app/data/users.json';
-$users = file_to_array($file_name) ?: [];
+$conditions = [];
 
+$pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
 
-var_dump($_POST);
 ?>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="app/assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
     <title></title>
     <style>
     </style>
 </head>
 <body>
-<?php include 'app/templates/nav.php' ?>
+<?php include '../app/templates/nav.php' ?>
 <main>
     <h1><?php print $text ?></h1>
-    <?php if ($pixels) : ?>
-        <div class="form">
-            <form method="post">
-                <?php include 'core/templates/form.tpl.php' ?>
-            </form>
-        </div>
-        <div class="pixels">
-            <?php foreach ($users as $user_id) : ?>
-                <?php foreach ($user_id['pixels'] ?? [] as $pixel_id): ?>
+    <section class="pixels-form">
+        <?php if ($show_form) : ?>
+            <div class="pixels">
+                <?php foreach ($pixels_array as $pixel_id) : ?>
                     <div
                             style="
                                     top:<?php print $pixel_id['x'] ?>px;
@@ -189,11 +169,21 @@ var_dump($_POST);
                                     background-color:<?php print $pixel_id['color'] ?>;
                                     "
                             class="single-pixel">
+                          <span class="name"
+                                style="color:<?php print $pixel_id['color'] ?>">
+                        <?php print $pixel_id['email'] ?>
+                    </span>
                     </div>
+
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+            </div>
+            <div class="form">
+                <form method="post">
+                    <?php include '../core/templates/form.tpl.php' ?>
+                </form>
+            </div>
+        <?php endif; ?>
+    </section>
 </main>
 </body>
 </html>

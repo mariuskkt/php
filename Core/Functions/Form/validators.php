@@ -140,16 +140,7 @@ function validate_phone($field_input, array &$field): bool
  */
 function validate_email_unique($field_input, array &$field): bool
 {
-    $data = file_to_array('app/data/users.json') ?: [];
-    $found = false;
-
-    foreach ($data as $user_id) {
-        if ($user_id['email'] == $field_input) {
-            $found = true;
-            break;
-        }
-    }
-    if ($found) {
+    if (App\App::$db->getRowsWhere('users', ['email' => $field_input])) {
         $field['error'] = 'Such email already exists';
 
         return false;
@@ -167,22 +158,12 @@ function validate_email_unique($field_input, array &$field): bool
  */
 function validate_login(array $safe_input, array &$field): bool
 {
-    $data = file_to_array('app/data/users.json') ?: [];
-
-    $found = false;
-
     if (isset($safe_input['email'])) {
-        foreach ($data as $user_id) {
-            if ($user_id['email'] == $safe_input['email'] && $user_id['password'] == $safe_input['password']) {
-                $found = true;
-                break;
-            }
-        }
-    }
-    if (!$found) {
-        $field['error'] = 'Wrong login credentials';
+        if (!App\App::$db->getRowsWhere('users', ['email' => $safe_input['email'], 'password' => $safe_input['password']])) {
+            $field['error'] = 'Wrong login credentials';
 
-        return false;
+            return false;
+        }
     }
 
     return true;

@@ -21,7 +21,6 @@
  * validates if input age is between 18 and 100
  * @param $field_input
  * @param array $field
- * @param $params
  * @return bool
  */
 function validate_18_to_100($field_input, array &$field)
@@ -171,21 +170,19 @@ function validate_kick(array $safe_input, array &$form): bool
  */
 function validate_pixels($filtered_input, array &$form, $params)
 {
-    $file_name = 'app/data/users.json';
-    $users = file_to_array($file_name) ?: [];
 
     $x = $filtered_input[$params[0]];
     $y = $filtered_input[$params[1]];
 
-    foreach ($users as $user) {
-        if ($user['email'] != $_SESSION['email']) {
-            foreach ($user['pixels'] as $pixel) {
-                if ($pixel['x'] == $x && $pixel['y'] == $y) {
-                    $form['fields']['x']['error'] = 'This pixel is owned by another user';
-                    $form['fields']['y']['error'] = 'This pixel is owned by another user';
+    $pixels_array = App\App::$db->getRowsWhere('pixels', []);
 
-                    return false;
-                }
+    foreach ($pixels_array as $pixel_id) {
+        if ($pixel_id['email'] != $_SESSION['email']) {
+            if ($pixel_id['x'] == $x && $pixel_id['y'] == $y) {
+                $form['fields']['x']['error'] = 'This pixel is owned by another user';
+                $form['fields']['y']['error'] = 'This pixel is owned by another user';
+
+                return false;
             }
         }
     }

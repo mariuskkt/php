@@ -1,7 +1,6 @@
 <?php
 
-require 'bootloader.php';
-
+require '../bootloader.php';
 /**
  * if fields are filled in correctly
  * @param $form
@@ -10,19 +9,42 @@ require 'bootloader.php';
  */
 function form_success($form, $safe_input)
 {
-    $_SESSION['email'] = $safe_input['email'];
-    $_SESSION['password'] = $safe_input['password'];
-    header("Location: /index.php");
+
+
+    App\App::$db->insertRow('users',
+        [
+            'user_name' => $safe_input['user_name'],
+            'email' => $safe_input['email'],
+            'password' => $safe_input['password']
+        ]);
+
+    header("Location: /login.php");
 }
 
 $form = [
     'fields' => [
+        'user_name' => [
+            'label' => 'User name ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
         'email' => [
             'label' => 'Your email: ',
             'type' => 'email',
             'value' => '',
             'validate' => [
                 'validate_not_empty',
+                'validate_email_unique',
+                'validate_email'
             ],
             'extra' => [
                 'attr' => [
@@ -46,12 +68,28 @@ $form = [
                 ]
             ]
         ],
+        'repeat_password' => [
+            'label' => 'Repeat password ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                    'step' => 'any'
+                ]
+            ]
+        ],
     ],
     'buttons' => [
         'button' => [
             'name' => 'action',
             'type' => 'submit',
-            'title' => 'Join',
+            'title' => 'Register',
             'extra' => [
                 'attr' => [
 
@@ -60,8 +98,10 @@ $form = [
         ]
     ],
     'validators' => [
-//        'validate_email_unique'
-        'validate_login'
+        'validate_fields_match' => [
+            'password',
+            'repeat_password'
+        ],
     ],
     'callbacks' => [
         'success' => 'form_success',
@@ -88,12 +128,8 @@ $nav = [
     ]
 ];
 
+unset($nav[3]);
 
-if (!isset($_SESSION['email'])) {
-    unset($nav[3]);
-} else{
-    unset($nav[2]);
-}
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
@@ -101,25 +137,23 @@ if ($_POST) {
 }
 
 var_dump($_POST);
-var_dump($_SESSION);
-var_dump($_COOKIE);
 
 ?>
 
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="app/assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
     <title></title>
     <style>
     </style>
 </head>
 <body>
-<?php include 'app/templates/nav.php' ?>
+<?php include '../app/templates/nav.php' ?>
 <main>
-    <h1>Login</h1>
+    <h1>Registration</h1>
     <form method="post">
-        <?php include 'core/templates/form.tpl.php' ?>
+        <?php include '../core/templates/form.tpl.php' ?>
     </form>
 </main>
 </body>

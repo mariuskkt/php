@@ -1,6 +1,6 @@
 <?php
 
-require 'bootloader.php';
+require '../bootloader.php';
 
 /**
  * if all inputs has been validated,then sends inputs to DB file
@@ -86,18 +86,18 @@ if ($_POST) {
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="app/assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
     <title></title>
     <style>
     </style>
 </head>
 <body>
-<?php include 'app/templates/nav.php' ?>
+<?php include '../app/templates/nav.php' ?>
 <main>
     <h1>Registration</h1>
     <section>
         <form method="post">
-            <?php include 'core/templates/form.tpl.php' ?>
+            <?php include '../core/templates/form.tpl.php' ?>
         </form>
     </section>
 </main>
