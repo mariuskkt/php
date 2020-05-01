@@ -3,6 +3,7 @@
 namespace Core;
 
 use App\App;
+use App\Users\User;
 
 class Session
 {
@@ -31,13 +32,14 @@ class Session
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
 
+            $this->user = New User($this->user);
             return true;
         }
 
         return false;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -48,7 +50,7 @@ class Session
         session_destroy();
         setcookie('PHPSESSID', null, -1);
 
-        if ($redirect){
+        if ($redirect) {
             header("Location: $redirect");
         }
     }

@@ -16,7 +16,7 @@ function form_success($form, array $safe_input): void
 
     $data = new \App\Pixels\Pixel($safe_input);
 
-    App\App::$db->insertRow('pixels', $data->getData());
+    App\App::$db->insertRow('pixels', $data->_getData());
 
     var_dump($data);
 }
@@ -128,7 +128,7 @@ if ($logged_in) {
 
     unset($nav[1], $nav[2]);
 
-    $text = 'Welcome back, ' . $logged_in['user_name'];
+    $text = 'Welcome back, ' . $logged_in->getUsername();
     $show_form = true;
 } else {
     $show_form = false;
@@ -140,14 +140,21 @@ if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
+$properties = [
+    'x' => 100,
+    'y' => 200,
+    'color' => 'blue',
+    'email' => 'mail@mail.com',
+    'nothing' => 'false'
+];
 
 $conditions = [];
 
 $pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
 
-$test = new \App\Pixels\Pixel();
-$test->x=100;
-var_dump($test->b);
+$test = new \App\Pixels\Pixel($properties);
+var_dump($test->_getData());
+var_dump($_SESSION);
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -175,7 +182,7 @@ var_dump($test->b);
                           <span class="name"
                                 style="color:<?php print $pixel_id['color'] ?>">
                         <?php print $pixel_id['email'] ?>
-                    </span>
+                          </span>
                     </div>
 
                 <?php endforeach; ?>

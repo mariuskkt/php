@@ -9,21 +9,17 @@ require '../bootloader.php';
  */
 function form_success($form, $safe_input)
 {
-
+    $user = new \App\Users\User($safe_input);
 
     App\App::$db->insertRow('users',
-        [
-            'user_name' => $safe_input['user_name'],
-            'email' => $safe_input['email'],
-            'password' => $safe_input['password']
-        ]);
+        $user->_getData());
 
     header("Location: /login.php");
 }
 
 $form = [
     'fields' => [
-        'user_name' => [
+        'username' => [
             'label' => 'User name ',
             'type' => 'text',
             'value' => '',

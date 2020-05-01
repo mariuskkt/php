@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Pixels;
+namespace App\Users;
 
-use Exception;
+class User
 
-class Pixel
 {
     /**
      * Pixel constructor.
@@ -20,78 +19,60 @@ class Pixel
 
     /**
      * sets x in data array
-     * @param int $x
+     * @param string $value
      */
-    public function setX(int $x): void
+    public function setUsername(string $value): void
     {
-        $this->x = $x;
+        $this->username = $value;
     }
 
     /**
      * gets x from data array
-     * @return int|null
+     * @return string|null
      */
-    public function getX(): ?int
+    public function getUsername(): ?string
     {
-        return $this->x ?? null;
+        return $this->username ?? null;
     }
 
 
     /**
      * sets y in data array
-     * @param int $y
+     * @param string $value
      * @return void
      */
-    public function setY(int $y): void
+    public function setEmail(string $value): void
     {
-        $this->y = $y;
+        $this->email = $value;
     }
 
     /**
      * gets y from data array
-     * @return int|null
+     * @return string|null
      */
-    public function getY(): ?int
+    private function getEmail(): ?string
     {
-        return $this->y ?? null;
+        return $this->email ?? null;
     }
 
 
     /**
      * sets color in data array
-     * @param string $color
+     * @param string $value
      * @return void
      */
-    public function setColor(string $color): void
+    public function setPassword(string $value): void
     {
-        $this->color = $color;
+        $this->password = $value;
     }
 
     /**
      * gets color from data array
      * @return string|null
      */
-    public function getColor(): ?string
+    public function getPassword(): ?string
     {
-        return $this->color ?? null;
-    }
-
-    /**
-     * sets email in data array
-     * @param string $email
-     */
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * gets email from data
-     * @return string|null
-     */
-    public function getEmail(): ?string
-    {
-        return $this->email ?? null;
+        return $this->password ?? null;
     }
 
     /**
@@ -191,7 +172,6 @@ class Pixel
 
             $this->{$method}($value);
         } else {
-            var_dump($method);
             var_dump('such setter doesn\'t exist');
         }
     }
