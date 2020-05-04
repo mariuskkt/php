@@ -4,11 +4,11 @@ require 'bootloader.php';
 
 
 /**
- * @param $form
+ * @param $data
  * @param $safe_input
  * @throws Exception
  */
-function form_success(&$form, $safe_input)
+function form_success(&$data, $safe_input)
 {
     $data = file_to_array(TEAMS_DB);
     $data = $data ? $data : [];
@@ -32,7 +32,7 @@ function form_success(&$form, $safe_input)
 
     header("Location: /play.php");
 }
-$form = [
+$data = [
     'fields' => [
         'team' => [
             'label' => 'Choose your team: ',
@@ -88,7 +88,7 @@ $form = [
     ]
 ];
 
-$nav = [
+$data = [
     [
         'link' => '/create.php',
         'name' => 'CREATE A TEAM'
@@ -107,12 +107,12 @@ $teams = file_to_array(TEAMS_DB);
 
 //idedu komandos pavadinima tarp select optionu
 foreach ($teams as $team_id => $team) {
-    $form['fields']['team']['option'][$team_id] = $team['team_name'];
+    $data['fields']['team']['option'][$team_id] = $team['team_name'];
 }
 
 if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
+    $safe_input = get_filtered_input($data);
+    validate_form($data, $safe_input);
 }
 
 $display_form = true;

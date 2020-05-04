@@ -1,12 +1,12 @@
 <form
-    <?php print html_attr(($form['attr'] ?? []) + ['method' => 'POST']); ?>>
+    <?php print html_attr(($data['attr'] ?? []) + ['method' => 'POST']); ?>>
 
-    <?php foreach ($form['fields'] ?? [] as $field_id => $field): ?>
+    <?php foreach ($data['fields'] ?? [] as $field_id => $field): ?>
 
         <label>
             <span><?php print $field['label'] ?: [] ?></span>
             <?php if (in_array($field['type'], ['text', 'password', 'number', 'email', 'color'])): ?>
-                <input <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
+                <input <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
                         'type' => $field['type'],
                         'value' => $field['value'] ?? '',
@@ -14,7 +14,7 @@
                     ]);
                 ?>
             <?php elseif (in_array($field['type'], ['select'])): ?>
-                <select <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
+                <select <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
                         'type' => $field['type'],
                         'value' => $field['value'] ?? ''
@@ -28,7 +28,7 @@
                     <?php endforeach; ?>
                 </select>
             <?php elseif (in_array($field['type'], ['textarea'])) : ?>
-                <textarea <?php print html_attr(($form['fields'][$field_id]['extra']['attr'] ?? []) + [
+                <textarea <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
                         'name' => $field_id,
                         'type' => $field['type'],
                     ]) ?>>
@@ -49,7 +49,7 @@
             <span class="error"><?php print $field['error']; ?></span>
         <?php endif; ?>
     <?php endforeach; ?>
-    <?php foreach ($form['buttons'] ?? [] as $button_id => $button): ?>
+    <?php foreach ($data['buttons'] ?? [] as $button_id => $button): ?>
         <button <?php print html_attr(($button['extra']['attr'] ?? []) +
             [
                 'name' => 'action',
@@ -58,7 +58,7 @@
             <?php print $button['title'] ?>
         </button>
     <?php endforeach; ?>
-    <?php if (isset($form['error'])): ?>
-        <span class="error"><?php print $form['error']; ?></span>
+    <?php if (isset($data['error'])): ?>
+        <span class="error"><?php print $data['error']; ?></span>
     <?php endif; ?>
 </form>

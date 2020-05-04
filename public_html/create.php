@@ -4,11 +4,11 @@ require '../bootloader.php';
 
 /**
  * if all inputs has been validated,then sends inputs to DB file
- * @param $form
+ * @param $data
  * @param $safe_input
  * @throws Exception
  */
-function form_success(array $form, array $safe_input)
+function form_success(array $data, array $safe_input)
 {
     $file_name = TEAMS_DB ?: [];
 
@@ -22,7 +22,7 @@ function form_success(array $form, array $safe_input)
     header("Location: /join.php");
 }
 
-$form = [
+$data = [
     'fields' => [
 
         'team_name' => [
@@ -78,8 +78,8 @@ $nav = [
 ];
 
 if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
+    $safe_input = get_filtered_input($data);
+    validate_form($data, $safe_input);
 }
 
 ?>

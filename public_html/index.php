@@ -4,12 +4,12 @@ require '../bootloader.php';
 
 /**
  * if fields are filled in correctly
- * @param $form
+ * @param $data
  * @param array $safe_input
  * @return void
  * @throws Exception
  */
-function form_success($form, array $safe_input): void
+function form_success($data, array $safe_input): void
 {
 
     $safe_input['email'] = $_SESSION['email'];
@@ -140,21 +140,13 @@ if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
-$properties = [
-    'x' => 100,
-    'y' => 200,
-    'color' => 'blue',
-    'email' => 'mail@mail.com',
-    'nothing' => 'false'
-];
-
 $conditions = [];
 
 $pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
 
-$test = new \App\Pixels\Pixel($properties);
-var_dump($test->_getData());
-var_dump($_SESSION);
+$form_template = new Core\Views\Form($form);
+$nav_template = new Core\Views\Nav($nav);
+
 ?>
 <html lang="en" dir="ltr">
 <head>
@@ -165,7 +157,7 @@ var_dump($_SESSION);
     </style>
 </head>
 <body>
-<?php include '../app/templates/nav.php' ?>
+<?php print $nav_template->render() ?>
 <main>
     <h1><?php print $text ?></h1>
     <section class="pixels-form">
@@ -184,12 +176,11 @@ var_dump($_SESSION);
                         <?php print $pixel_id['email'] ?>
                           </span>
                     </div>
-
                 <?php endforeach; ?>
             </div>
             <div class="form">
                 <form method="post">
-                    <?php include '../core/templates/form.tpl.php' ?>
+                    <?php print $form_template->render() ?>
                 </form>
             </div>
         <?php endif; ?>

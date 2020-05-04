@@ -1,7 +1,7 @@
 <header>
     <nav>
         <ul>
-            <?php foreach ($nav as $links): ?>
+            <?php foreach ($data as $links): ?>
                 <li>
                     <?php include 'nav_a_link.php';?>
                     <?php if (isset($links['drop_down'])): ?>

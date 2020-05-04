@@ -1,6 +1,6 @@
 <?php
 
-$nav = [
+$data = [
     [
         'name' => 'Home',
         'link' => '/index.php'

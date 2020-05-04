@@ -5,11 +5,11 @@ require '../bootloader.php';
 
 /**
  * if fields are filled in correctly
- * @param $form
+ * @param $data
  * @param $safe_input
  * @throws Exception
  */
-function form_success($form, $safe_input)
+function form_success($data, $safe_input)
 {
     App\App::$session->login($safe_input['email'], $safe_input['password']);
 
@@ -105,6 +105,11 @@ var_dump($_POST);
 var_dump($_SESSION);
 var_dump($_COOKIE);
 
+$form_template = new Core\Views\Form($form);
+$nav_template = new Core\Views\Nav($nav);
+
+$form_path = ROOT . '/core/templates/form.tpl.php';
+$nav_path = ROOT . '/app/templates/nav.php';
 ?>
 
 <html lang="en" dir="ltr">
@@ -116,11 +121,11 @@ var_dump($_COOKIE);
     </style>
 </head>
 <body>
-<?php include '../app/templates/nav.php' ?>
+<?php print $nav_template->render() ?>
 <main>
     <h1>Login</h1>
     <form method="post">
-        <?php include '../core/templates/form.tpl.php' ?>
+        <?php print $form_template->render() ?>
     </form>
 </main>
 </body>

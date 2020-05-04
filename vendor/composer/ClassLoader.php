@@ -100,7 +100,7 @@ class ClassLoader
 
     /**
      * Registers a set of PSR-0 directories for a given prefix, either
-     * App\App::ending or prepending to the ones previously set for this prefix.
+     * appending or prepending to the ones previously set for this prefix.
      *
      * @param string       $prefix  The prefix
      * @param array|string $paths   The PSR-0 root directories
@@ -145,7 +145,7 @@ class ClassLoader
 
     /**
      * Registers a set of PSR-4 directories for a given namespace, either
-     * App\App::ending or prepending to the ones previously set for this namespace.
+     * appending or prepending to the ones previously set for this namespace.
      *
      * @param string       $prefix  The prefix/namespace, with trailing '\\'
      * @param array|string $paths   The PSR-4 base directories
@@ -183,7 +183,7 @@ class ClassLoader
                 $this->prefixDirsPsr4[$prefix]
             );
         } else {
-            // App\App::end directories for an already registered namespace.
+            // Append directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 $this->prefixDirsPsr4[$prefix],
                 (array) $paths

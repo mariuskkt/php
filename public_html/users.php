@@ -2,7 +2,7 @@
 
 require 'bootloader.php';
 
-$table = [
+$data = [
 
     'thead' => [
         'Klausimas', 'Taip(%)'
@@ -18,7 +18,7 @@ $questions = [
 
 $data = file_to_array(DB_FILE) ?: [];
 
-//$table['tbody'] = $data ?: [];
+//$data['tbody'] = $data ?: [];
 
 
 $sum_participants = count($data);
@@ -38,7 +38,7 @@ foreach ($data as $participant) {
 };
 
 foreach ($statistics as $question_id => $count) {
-    $table['tbody'][] = [
+    $data['tbody'][] = [
         $questions[$question_id],
         round($count / $sum_participants * 100)
     ];
@@ -46,7 +46,7 @@ foreach ($statistics as $question_id => $count) {
 //var_dump($statistics);
 
 
-//var_dump($table);
+//var_dump($data);
 
 ?>
 

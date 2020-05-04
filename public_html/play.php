@@ -5,11 +5,11 @@ require 'bootloader.php';
 
 /**
  * if all inputs has been validated,then sends inputs to DB file
- * @param $form
+ * @param $data
  * @param $safe_input
  * @throws Exception
  */
-function form_success(array $form, array $safe_input)
+function form_success(array $data, array $safe_input)
 {
     $data = file_to_array(TEAMS_DB) ?: [];
 
@@ -26,7 +26,7 @@ function form_success(array $form, array $safe_input)
 }
 
 
-$form = [
+$data = [
     'buttons' => [
         'submit' => [
             'title' => 'Kick the ball',
@@ -47,7 +47,7 @@ $form = [
     ]
 ];
 
-$nav = [
+$data = [
     [
         'link' => '/create.php',
         'name' => 'CREATE A TEAM'
@@ -90,8 +90,8 @@ if (!isset($_SESSION['nick_name'])) {
 }
 
 if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
+    $safe_input = get_filtered_input($data);
+    validate_form($data, $safe_input);
 }
 
 ?>
