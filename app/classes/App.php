@@ -4,6 +4,7 @@ namespace App;
 
 use Core\Databases\FileDB;
 use Core\Session;
+
 //use App\Pixels\Pixel;
 
 class App
@@ -14,12 +15,10 @@ class App
 
     public function __construct()
     {
-        self::$db = new FileDB(USERS_DB);
+        self::$db = new FileDB(DB_FILE);
         self::$db->load();
 
         self::$session = new Session();
-
-//        self::$pixels = new Pixel();
     }
 
     public function __destruct()

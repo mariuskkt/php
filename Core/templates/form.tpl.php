@@ -6,32 +6,19 @@
         <label>
             <span><?php print $field['label'] ?: [] ?></span>
             <?php if (in_array($field['type'], ['text', 'password', 'number', 'email', 'color'])): ?>
-                <input <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
-                        'name' => $field_id,
-                        'type' => $field['type'],
-                        'value' => $field['value'] ?? '',
-//                        'placeholder' => $field['label'] ?? ''
-                    ]);
+                <input <?php print input_attr($field, $field_id);
                 ?>
             <?php elseif (in_array($field['type'], ['select'])): ?>
-                <select <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
-                        'name' => $field_id,
-                        'type' => $field['type'],
-                        'value' => $field['value'] ?? ''
-                    ]);
+                <select <?php print select_attr($field, $field_id);
                 ?>>
                     <?php foreach ($field['option'] as $option_id => $option_title): ?>
-                        <option value="<?php print $option_id; ?>"
-                            <?php print ($field['value'] == $option_id) ? 'selected' : ''; ?>>
+                        <option <?php print option_attr($field, $option_id) ?>>
                             <?php print $option_title; ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             <?php elseif (in_array($field['type'], ['textarea'])) : ?>
-                <textarea <?php print html_attr(($data['fields'][$field_id]['extra']['attr'] ?? []) + [
-                        'name' => $field_id,
-                        'type' => $field['type'],
-                    ]) ?>>
+                <textarea <?php print textarea_attr($field, $field_id) ?>>
                     <?php print $field['value'] ?? '' ?>
                 </textarea>
             <?php elseif (in_array($field['type'], ['radio'])) : ?>
@@ -39,7 +26,7 @@
                     <label>
                         <div class="radio">
                             <span><?php print $option_id; ?></span>
-                            <input <?php print radio_attr($field, $field_id, $option_id ) ?>>
+                            <input <?php print radio_attr($field, $field_id, $option_id) ?>>
                         </div>
                     </label>
                 <?php endforeach; ?>

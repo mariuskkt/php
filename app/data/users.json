@@ -1,1 +1,906 @@
-{"users":[{"username":"marius","email":"marius.kukta@gmail.com","password":"marius"},{"username":"bbs","email":"bbs@bbs.com","password":"bbs"}],"pixels":[{"x":43,"y":32,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":43,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":500,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":500,"y":500,"color":"#008000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":33,"y":32,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com","property_keys":["x","y","color","email","property_keys"]},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":45,"y":45,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":234,"y":32,"color":"#000000","email":"bbs@bbs.com"},{"x":234,"y":32,"color":"#000000","email":"bbs@bbs.com"},{"x":234,"y":32,"color":"#000000","email":"bbs@bbs.com"},{"x":234,"y":32,"color":"#000000","email":"bbs@bbs.com"},{"x":300,"y":500,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":300,"y":500,"color":"#000000","email":"marius.kukta@gmail.com"},{"x":300,"y":500,"color":"#000000","email":"marius.kukta@gmail.com"}]}
+{
+  "users": [
+    {
+      "username": "marius",
+      "email": "marius.kukta@gmail.com",
+      "password": "marius"
+    },
+    {
+      "username": "bbs",
+      "email": "bbs@bbs.com",
+      "password": "bbs"
+    }
+  ],
+  "pixels": [
+    {
+      "x": 43,
+      "y": 32,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 500,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 500,
+      "y": 500,
+      "color": "#008000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 33,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com",
+      "property_keys": [
+        "x",
+        "y",
+        "color",
+        "email",
+        "property_keys"
+      ]
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 45,
+      "y": 45,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 234,
+      "y": 32,
+      "color": "#000000",
+      "email": "bbs@bbs.com"
+    },
+    {
+      "x": 234,
+      "y": 32,
+      "color": "#000000",
+      "email": "bbs@bbs.com"
+    },
+    {
+      "x": 234,
+      "y": 32,
+      "color": "#000000",
+      "email": "bbs@bbs.com"
+    },
+    {
+      "x": 234,
+      "y": 32,
+      "color": "#000000",
+      "email": "bbs@bbs.com"
+    },
+    {
+      "x": 300,
+      "y": 500,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 300,
+      "y": 500,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 300,
+      "y": 500,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com"
+    },
+    {
+      "x": 43,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com",
+      "id": null
+    },
+    {
+      "x": 43,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com",
+      "id": null
+    },
+    {
+      "x": 50,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com",
+      "id": null
+    },
+    {
+      "x": 80,
+      "y": 32,
+      "color": "#000000",
+      "email": "marius.kukta@gmail.com",
+      "id": null
+    }
+  ],
+  "TABLE": [
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com"
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com",
+      "id": null
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com",
+      "id": null
+    },
+    {
+      "x": 55,
+      "y": 60,
+      "color": "#000000",
+      "email": "genys@gmail.com",
+      "id": null
+    }
+  ],
+  "DRINKS": [
+    {
+      "name": null,
+      "percentage": null,
+      "volume": null,
+      "amount": null,
+      "price": null,
+      "id": null
+    },
+    {
+      "name": "14",
+      "percentage": null,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "14",
+      "percentage": null,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Bonka",
+      "percentage": null,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Bonka",
+      "percentage": 18,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Bonka",
+      "percentage": 18,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Bonka",
+      "percentage": 18,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Bonka",
+      "percentage": 18,
+      "volume": 500,
+      "amount": 1500,
+      "price": 90,
+      "id": null
+    },
+    {
+      "name": "Marius",
+      "percentage": 30,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Marius",
+      "percentage": 30,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 30,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    }
+  ],
+  "drinks": [
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    },
+    {
+      "name": "Sobieski",
+      "percentage": 23,
+      "volume": 500,
+      "amount": 1,
+      "price": 12,
+      "id": null
+    }
+  ]
+}

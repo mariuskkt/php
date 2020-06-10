@@ -147,6 +147,8 @@ $pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
 $form_template = new Core\Views\Form($form);
 $nav_template = new Core\Views\Nav($nav);
 
+//\App\Pixels\Model::insert(new \App\Pixels\Pixel(['x' => 55, 'y' => 60, 'color' => '#000000', 'email' => 'genys@gmail.com']));
+
 ?>
 <html lang="en" dir="ltr">
 <head>

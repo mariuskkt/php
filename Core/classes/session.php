@@ -7,7 +7,7 @@ use App\Users\User;
 
 class Session
 {
-    private $user;
+    private $user = null;
 
     public function __construct()
     {

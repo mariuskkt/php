@@ -201,10 +201,10 @@ class FileDB
      * @param $row_id
      * @return bool
      */
-    public function getRowById(string $table_name, $row_id): bool
+    public function getRowById(string $table_name, $row_id)
     {
         if ($this->rowExists($table_name, $row_id)) {
-            return $this->data[$table_name][$row_id];
+            return ['id' => $row_id] + $this->data[$table_name][$row_id];
         }
 
         return false;
@@ -217,7 +217,8 @@ class FileDB
      * @param array $conditions
      * @return array
      */
-    public function getRowsWhere(string $table_name, array $conditions): array
+    public
+    function getRowsWhere(string $table_name, array $conditions): array
     {
         $results = [];
 
@@ -229,6 +230,7 @@ class FileDB
                 }
             }
             if ($success) {
+                $row['id'] = $row_id;
                 $results[$row_id] = $row;
             }
         }
@@ -236,10 +238,12 @@ class FileDB
         return $results;
     }
 
-    public function getRowWhere(string $table_name, array $conditions){
+    public
+    function getRowWhere(string $table_name, array $conditions)
+    {
 
         $rows = $this->getRowsWhere($table_name, $conditions);
 
-        return reset($rows);
+        return reset($rows) ?: null;
     }
 }

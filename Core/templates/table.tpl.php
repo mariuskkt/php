@@ -1,11 +1,11 @@
 <table>
     <thead>
-    <?php foreach ($table['thead'] ?? [] as $thead => $thead_value) : ?>
+    <?php foreach ($data['thead'] ?? [] as $thead => $thead_value) : ?>
         <th><?php print $thead_value; ?></th>
     <?php endforeach; ?>
     </thead>
     <tbody>
-    <?php foreach ($table['tbody'] ?? [] as $trow): ?>
+    <?php foreach ($data['tbody'] ?? [] as $trow): ?>
         <tr>
             <?php foreach ($trow ?? [] as $tcol_value): ?>
                 <td> <?php print  $tcol_value; ?></td>
@@ -14,6 +14,5 @@
     <?php endforeach; ?>
     </tbody>
 </table>
-<h2><?php print $h2 ?></h2>
 
 

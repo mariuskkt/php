@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Exception;
+
 class DataHolder
 {
     /**
@@ -26,7 +28,6 @@ class DataHolder
             $this->__set($property_key, $value);
         }
     }
-
 
     /**
      * @return array
