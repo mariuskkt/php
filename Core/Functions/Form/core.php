@@ -89,3 +89,8 @@ function fill_form(array &$form, array $data): void
         }
     }
 }
+
+function get_form_action()
+{
+    return $_POST['action'] ?? null;
+}

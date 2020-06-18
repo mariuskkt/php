@@ -1,22 +1,35 @@
 <?php
 
-require '../../bootloader.php';
+require '../../../bootloader.php';
 
 /**
  * if fields are filled in correctly
- * @param $data
+ * @param $form
  * @param array $safe_input
  * @return void
  * @throws Exception
  */
-function form_success($data, array $safe_input): void
+function form_success($form, array $safe_input): void
 {
     $safe_input['id'] = $_GET['id'];
-    \App\Drinks\DrinksModel::update(new \App\Drinks\Drinks($safe_input));
+    \App\Drinks\Model::update(new \App\Drinks\Drink($safe_input));
+    header("Location: /admin/products/views.php");
 }
 
-if (isset($_GET['id'])) {
-    $drink = \App\Drinks\DrinksModel::get($_GET['id']);
+$id = $_GET['id'] ?? null;
+
+if ($id !== null) {
+    if (strlen($id) > 0) {
+        $drink = \App\Drinks\Model::get((int)$id);
+    }
+    if (!($drink ?? null)) {
+        header('Location: http://phpsualum.lt/admin/orders/views.php');
+    }
+}
+
+if (!\App\App::$session->userIs(\App\Users\User::ROLE_ADMIN)) {
+    header('HTTP/1.1 401 Unauthorized');
+    exit;
 }
 
 $form = [
@@ -106,7 +119,6 @@ $form = [
     ],
     'buttons' => [
         'button' => [
-            'name' => 'action',
             'type' => 'submit',
             'title' => 'Update',
             'extra' => [
@@ -118,10 +130,10 @@ $form = [
     ],
     'callbacks' => [
         'success' => 'form_success',
-//        'failed' => 'form_failed'
     ],
     'validators' => []
 ];
+
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
@@ -130,17 +142,20 @@ if ($_POST) {
 var_dump($_POST);
 
 $form_template = new Core\Views\Form($form);
+$nav_template = new App\Views\Nav();
+
 ?>
 
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css"/>
     <title></title>
     <style>
     </style>
 </head>
 <body>
+<?php print $nav_template->render() ?>
 <main>
     <div class="form">
         <form method="post">

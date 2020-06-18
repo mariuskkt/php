@@ -2,152 +2,63 @@
 
 require '../bootloader.php';
 
-/**
- * if fields are filled in correctly
- * @param $data
- * @param array $safe_input
- * @return void
- * @throws Exception
- */
-function form_success($data, array $safe_input): void
+function cart_success($cart_form, $safe_input)
 {
-
-    $safe_input['email'] = $_SESSION['email'];
-
-    $data = new \App\Pixels\Pixel($safe_input);
-
-    App\App::$db->insertRow('pixels', $data->_getData());
-
-    var_dump($data);
+    $logged_in = App\App::$session->getUser();
+    $cart = [
+        'drinkId' => $safe_input['id'],
+        'userId' => $logged_in->id
+    ];
+    $item = new \App\Cart\Items\Item($cart);
+    $item->setStatus(\App\Cart\Items\Item::STATUS_IN_CART);
+    \App\Cart\Items\Model::insert($item);
 }
 
-$nav = [
-    [
-        'link' => '/index.php',
-        'name' => 'Home'
+$cart_form = [
+    'attr' => [
+        'class' => 'cart_form'
     ],
-    [
-        'link' => '/register.php',
-        'name' => 'Register'
-    ],
-    [
-        'link' => '/login.php',
-        'name' => 'Login'
-    ],
-    [
-        'link' => '/logout.php',
-        'name' => 'logout'
-    ]
-];
-
-$form = [
     'fields' => [
-        'x' => [
-            'label' => 'X: ',
-            'type' => 'number',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty',
-                'validate_is_number',
-                'validate_is_positive',
-                'validate_field_range' => [
-                    'min' => 0,
-                    'max' => 500
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'red',
-                    'id' => 'first-name',
-                ]
-            ]
-        ],
-        'y' => [
-            'label' => 'Y: ',
-            'type' => 'number',
-            'value' => '',
-            'validate' => [
-                'validate_not_empty',
-                'validate_is_number',
-                'validate_is_positive',
-                'validate_field_range' => [
-                    'min' => 0,
-                    'max' => 500
-                ]
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'red',
-                    'id' => 'first-name',
-                ]
-            ]
-        ],
-        'color' => [
-            'label' => 'Choose color: ',
-            'type' => 'color',
-            'value' => '',
-            'validate' => [
-
-            ],
-            'extra' => [
-                'attr' => [
-                    'class' => 'color',
-                    'id' => 'color',
-                ]
-            ]
+        'id' => [
+            'type' => 'hidden',
+            'value' => ''
         ],
     ],
     'buttons' => [
         'button' => [
-            'name' => 'action',
             'type' => 'submit',
-            'title' => 'Paint your pixels',
-            'extra' => [
-                'attr' => [
-
-                ]
-            ]
+            'title' => 'Order'
         ]
     ],
     'callbacks' => [
-        'success' => 'form_success',
-//        'failed' => 'form_failed'
-    ],
-    'validators' => [
-        'validate_pixels' => [
-            'x',
-            'y'
-        ]
+        'success' => 'cart_success',
     ]
-
 ];
 
-$logged_in = App\App::$session->getUser();
-
-if ($logged_in) {
-
-    unset($nav[1], $nav[2]);
-
-    $text = 'Welcome back, ' . $logged_in->getUsername();
-    $show_form = true;
-} else {
-    $show_form = false;
-    $text = 'Your are not logged in';
-    unset($nav[3]);
-}
-
 if ($_POST) {
-    $safe_input = get_filtered_input($form);
-    validate_form($form, $safe_input);
+    $safe_input = get_filtered_input($cart_form);
+    validate_form($cart_form, $safe_input);
+};
+
+$drinks = \App\Drinks\Model::getWhere([]);
+$data = [];
+
+foreach ($drinks as $drink_index => $drink) {
+    $cart_form['fields']['id']['value'] = $drink->getId();
+    $cart_btn = new \Core\Views\Form($cart_form);
+    $item = [
+        'data' => $drink,
+    ];
+
+    if (\App\App::$session->userIs(\App\Users\User::ROLE_USER)) {
+        $item['form'] = $cart_btn->render();
+    }
+
+    $data[] = $item;
 }
-$conditions = [];
 
-$pixels_array = App\App::$db->getRowsWhere('pixels', $conditions);
-
-$form_template = new Core\Views\Form($form);
-$nav_template = new Core\Views\Nav($nav);
-
-//\App\Pixels\Model::insert(new \App\Pixels\Pixel(['x' => 55, 'y' => 60, 'color' => '#000000', 'email' => 'genys@gmail.com']));
+$catalog_template = new Core\Views\Catalog($data);
+$nav_template = new App\Views\Nav();
 
 ?>
 <html lang="en" dir="ltr">
@@ -161,32 +72,8 @@ $nav_template = new Core\Views\Nav($nav);
 <body>
 <?php print $nav_template->render() ?>
 <main>
-    <h1><?php print $text ?></h1>
-    <section class="pixels-form">
-        <?php if ($show_form) : ?>
-            <div class="pixels">
-                <?php foreach ($pixels_array as $pixel_id) : ?>
-                    <div
-                            style="
-                                    top:<?php print $pixel_id['x'] ?>px;
-                                    left:<?php print $pixel_id['y'] ?>px;
-                                    background-color:<?php print $pixel_id['color'] ?>;
-                                    "
-                            class="single-pixel">
-                          <span class="name"
-                                style="color:<?php print $pixel_id['color'] ?>">
-                        <?php print $pixel_id['email'] ?>
-                          </span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="form">
-                <form method="post">
-                    <?php print $form_template->render() ?>
-                </form>
-            </div>
-        <?php endif; ?>
-    </section>
+    <h1>Who let the dogs out: </h1>
+    <?php print $catalog_template->render() ?>
 </main>
 </body>
 </html>

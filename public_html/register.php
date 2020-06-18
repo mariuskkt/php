@@ -3,24 +3,51 @@
 require '../bootloader.php';
 /**
  * if fields are filled in correctly
- * @param $data
+ * @param $form
  * @param $safe_input
  * @throws Exception
  */
-function form_success($data, $safe_input)
+function form_success($form, $safe_input)
 {
+    unset($safe_input['repeat_password']);
     $user = new \App\Users\User($safe_input);
-
-    App\App::$db->insertRow('users',
-        $user->_getData());
-
+    $user->setRole(\App\Users\User::ROLE_USER);
+    \App\Users\Model::insert($user);
     header("Location: /login.php");
 }
 
 $form = [
     'fields' => [
         'username' => [
-            'label' => 'User name ',
+            'label' => 'User name: ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'name' => [
+            'label' => 'Name: ',
+            'type' => 'text',
+            'value' => '',
+            'validate' => [
+                'validate_not_empty',
+            ],
+            'extra' => [
+                'attr' => [
+                    'class' => 'red',
+                    'id' => 'first-name',
+                ]
+            ]
+        ],
+        'surname' => [
+            'label' => 'Last name: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -50,7 +77,7 @@ $form = [
             ]
         ],
         'password' => [
-            'label' => 'Password ',
+            'label' => 'Password: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -65,7 +92,7 @@ $form = [
             ]
         ],
         'repeat_password' => [
-            'label' => 'Repeat password ',
+            'label' => 'Repeat password: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -101,43 +128,17 @@ $form = [
     ],
     'callbacks' => [
         'success' => 'form_success',
-//        'failed' => 'form_failed'
     ]
 ];
-
-$nav = [
-    [
-        'link' => '/index.php',
-        'name' => 'Home'
-    ],
-    [
-        'link' => '/register.php',
-        'name' => 'Register'
-    ],
-    [
-        'link' => '/login.php',
-        'name' => 'Login'
-    ],
-    [
-        'link' => '/logout.php',
-        'name' => 'logout'
-    ]
-];
-
-unset($nav[3]);
-
 
 if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 }
 
-var_dump($_POST);
 $form_template = new Core\Views\Form($form);
-$nav_template = new Core\Views\Nav($nav);
+$nav_template = new App\Views\Nav();
 
-$form_path = ROOT . '/core/templates/form.tpl.php';
-$nav_path = ROOT . '/app/templates/nav.php';
 ?>
 
 <html lang="en" dir="ltr">

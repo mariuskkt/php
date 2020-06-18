@@ -54,4 +54,15 @@ class Session
             header("Location: $redirect");
         }
     }
+
+    public function userIs(int $role)
+    {
+        $current_user = \App\App::$session->getUser();
+
+        if ($current_user && $current_user->getRole() == $role) {
+            return true;
+        }
+
+        return false;
+    }
 }

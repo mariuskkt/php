@@ -4,8 +4,8 @@
     <?php foreach ($data['fields'] ?? [] as $field_id => $field): ?>
 
         <label>
-            <span><?php print $field['label'] ?: [] ?></span>
-            <?php if (in_array($field['type'], ['text', 'password', 'number', 'email', 'color'])): ?>
+            <span><?php print $field['label'] ?? '' ?></span>
+            <?php if (in_array($field['type'], ['text', 'password', 'number', 'email', 'color','hidden'])): ?>
                 <input <?php print input_attr($field, $field_id);
                 ?>
             <?php elseif (in_array($field['type'], ['select'])): ?>

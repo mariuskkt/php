@@ -126,7 +126,7 @@ class FileDB
      * @param null $row_id
      * @return bool
      */
-    public function insertRow(string $table_name, array $row, $row_id = null): bool
+    public function insertRow(string $table_name, array $row, $row_id = null)
     {
         if ($row_id == null) {
             $this->data[$table_name][] = $row;

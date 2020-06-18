@@ -7,6 +7,28 @@ use Core\DataHolder;
 class User extends DataHolder
 
 {
+    const ROLE_ADMIN = 0;
+    const ROLE_USER = 1;
+
+    /**
+     * gets role in data array
+     * @return int|null
+     */
+    public function getRole(): ?int
+    {
+        return $this->role ?? null;
+    }
+
+    /**
+     * sets role in data array
+     * @param int $role
+     * @return void
+     */
+    public function setRole(int $role): void
+    {
+        $this->role = $role;
+    }
+
     /**
      * sets x in data array
      * @param string $value
@@ -26,6 +48,42 @@ class User extends DataHolder
     }
 
     /**
+     * sets name in data array
+     * @param string $value
+     */
+    public function setName(string $value): void
+    {
+        $this->name = $value;
+    }
+
+    /**
+     * gets name from data array
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name ?? null;
+    }
+
+    /**
+     * sets surname in data array
+     * @param string $value
+     */
+    public function setSurname(string $value): void
+    {
+        $this->surname = $value;
+    }
+
+    /**
+     * gets surname from data array
+     * @return string|null
+     */
+    public function getSurname(): ?string
+    {
+        return $this->surname ?? null;
+    }
+
+    /**
      * sets y in data array
      * @param string $value
      * @return void
@@ -39,7 +97,7 @@ class User extends DataHolder
      * gets y from data array
      * @return string|null
      */
-    private function getEmail(): ?string
+    public function getEmail(): ?string
     {
         return $this->email ?? null;
     }

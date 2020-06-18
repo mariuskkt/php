@@ -54,7 +54,7 @@ class DataHolder
 
             $this->{$method}($value);
         } else {
-            var_dump($method);
+            var_dump($property_key);
             var_dump('such setter doesn\'t exist');
         }
     }

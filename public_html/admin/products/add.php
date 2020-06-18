@@ -1,42 +1,28 @@
 <?php
 
-require '../../bootloader.php';
+require '../../../bootloader.php';
 
 /**
  * if fields are filled in correctly
- * @param $data
+ * @param $form
  * @param array $safe_input
  * @return void
  * @throws Exception
  */
-function form_success($data, array $safe_input): void
+function form_success($form, array $safe_input): void
 {
-    \App\Drinks\DrinksModel::insert(new \App\Drinks\Drinks($safe_input));
+    \App\Drinks\Model::insert(new \App\Drinks\Drink($safe_input));
 }
 
-$nav = [
-    [
-        'link' => '',
-        'name' => 'Link one'
-    ],
-    [
-        'link' => '',
-        'name' => 'Link two'
-    ],
-    [
-        'link' => '',
-        'name' => 'Link three'
-    ],
-    [
-        'link' => '',
-        'name' => 'Link four'
-    ]
-];
+if (!\App\App::$session->userIs(\App\Users\User::ROLE_ADMIN)) {
+    header('HTTP/1.1 401 Unauthorized');
+    exit;
+}
 
 $form = [
     'fields' => [
         'name' => [
-            'label' => 'Pavadinimas: ',
+            'label' => 'Product name: ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -50,7 +36,7 @@ $form = [
             ]
         ],
         'percentage' => [
-            'label' => 'Laipsniai: ',
+            'label' => 'Percentage: ',
             'type' => 'number',
             'value' => '',
             'validate' => [
@@ -70,7 +56,7 @@ $form = [
             ]
         ],
         'volume' => [
-            'label' => 'Tūris(ml): ',
+            'label' => 'Volume(ml): ',
             'type' => 'number',
             'value' => '',
             'validate' => [
@@ -90,7 +76,7 @@ $form = [
             ]
         ],
         'amount' => [
-            'label' => 'Kiekis sandėlyje: ',
+            'label' => 'Quantity in warehouse: ',
             'type' => 'number',
             'value' => '',
             'validate' => [
@@ -104,7 +90,7 @@ $form = [
             ]
         ],
         'price' => [
-            'label' => 'Kaina(EUR): ',
+            'label' => 'Price(EUR): ',
             'type' => 'number',
             'value' => '',
             'validate' => [
@@ -118,7 +104,7 @@ $form = [
             ]
         ],
         'photo' => [
-            'label' => 'Nuotrauka(URL:): ',
+            'label' => 'Picture(URL:): ',
             'type' => 'text',
             'value' => '',
             'validate' => [
@@ -136,7 +122,7 @@ $form = [
         'button' => [
             'name' => 'action',
             'type' => 'submit',
-            'title' => 'SUKURTI',
+            'title' => 'Create',
             'extra' => [
                 'attr' => [
 
@@ -155,9 +141,8 @@ if ($_POST) {
     $safe_input = get_filtered_input($form);
     validate_form($form, $safe_input);
 };
-var_dump($_POST);
 
-$nav_template = new Core\Views\Nav($nav);
+$nav_template = new App\Views\Nav();
 
 $form_template = new Core\Views\Form($form);
 ?>
@@ -165,7 +150,7 @@ $form_template = new Core\Views\Form($form);
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css"/>
     <title></title>
     <style>
     </style>

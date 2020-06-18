@@ -5,8 +5,6 @@ namespace App;
 use Core\Databases\FileDB;
 use Core\Session;
 
-//use App\Pixels\Pixel;
-
 class App
 {
     public static $db;

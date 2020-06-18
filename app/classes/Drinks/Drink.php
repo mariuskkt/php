@@ -5,7 +5,7 @@ namespace App\Drinks;
 use Core\DataHolder;
 use Exception;
 
-class Drinks extends DataHolder
+class Drink extends DataHolder
 {
     /**
      * sets id
