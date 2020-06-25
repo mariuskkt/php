@@ -1,6 +1,7 @@
 <?php
 
+use App\Controllers\Auth\LogoutController;
+
 require '../bootloader.php';
 
-App\App::$session->logout('/login.php');
-
+(new LogoutController())->index();

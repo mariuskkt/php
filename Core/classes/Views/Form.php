@@ -25,10 +25,8 @@ class Form extends \Core\abstracts\views\Form
     {
         $success = true;
         $safe_input = $this->getSubmitData();
-
         foreach ($this->data['fields'] as $field_index => &$field) {
             $field['value'] = $safe_input[$field_index];
-
             if (isset($field['validate'])) {
                 foreach ($field['validate'] as $validator_index => $field_validator) {
                     if (is_array($field_validator)) {
@@ -82,9 +80,9 @@ class Form extends \Core\abstracts\views\Form
      */
     public function isSubmitted(): bool
     {
-        if (isset($this->data['buttons'])){
+        if (isset($this->data['buttons'])) {
             foreach ($this->data['buttons'] as $button_index => $button) {
-                if ($_POST['action'] ?? [] === $button_index) {
+                if (self::getSubmitAction() === $button_index) {
                     return true;
                 }
             }
@@ -108,13 +106,9 @@ class Form extends \Core\abstracts\views\Form
             return $_POST ?: null;
         } else {
             $filter_params = [];
-            
+
             foreach ($this->data['fields'] ?? [] as $field_index => $field_value) {
-                if (isset($_POST)) {
-                    $filter_params[$field_index] = $field_value['validate'];
-                } else {
-                    $filter_params[$field_index] = FILTER_SANITIZE_SPECIAL_CHARS;
-                }
+                $filter_params[$field_index] = $field_value['filter'] ?? $filter_params[$field_index] = FILTER_SANITIZE_SPECIAL_CHARS;;
             };
 
             return filter_input_array(INPUT_POST, $filter_params);
@@ -130,7 +124,6 @@ class Form extends \Core\abstracts\views\Form
      */
     static function getSubmitAction(): ?string
     {
-        var_dump('xuj');
         return $_POST['action'] ?? null;
     }
 }

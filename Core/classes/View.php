@@ -14,7 +14,7 @@ class View
         $this->data = $data;
     }
 
-    public function render($template_path)
+    public function render(string $template_path)
     {
         if (!file_exists($template_path)) {
             throw (new \Exception("Template with filename: " .
