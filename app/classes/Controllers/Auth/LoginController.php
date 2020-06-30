@@ -27,7 +27,7 @@ class LoginController extends BaseController
         if ($form->isSubmitted() && $form->validate()) {
             $safe_input = $form->getSubmitData();
             \App\App::$session->login($safe_input['email'], $safe_input['password']);
-            header("Location: /index.php");
+            header("Location: /index");
         }
 
         $content = new \App\Views\Content([

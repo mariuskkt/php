@@ -13,6 +13,7 @@ class RegisterController extends BaseController
     {
         parent::__construct();
         $this->page->setTitle('Register');
+        $this->page->addStyle('assets/css/style.css');
     }
 
     public function index(): ?string

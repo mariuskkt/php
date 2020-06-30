@@ -51,7 +51,7 @@ class OrdersController extends BaseController
         foreach ($orders as $order) {
 
             $link = new \Core\Views\Link([
-                'url' => '/admin/orders/view.php?id=' . $order->getId(),
+                'url' => '/admin/orders/view?id=' . $order->getId(),
                 'title' => 'View order',
                 'attr' => [
                     'class' => 'view_order'
@@ -90,7 +90,7 @@ class OrdersController extends BaseController
                 $order = \App\Cart\Orders\Model::get((int)$id);
             }
             if (!($order ?? null)) {
-                header('Location: http://phpsualum.lt/admin/view.php');
+                header('Location: http://phpsualum.lt/admin/view');
             }
         }
 
@@ -99,7 +99,7 @@ class OrdersController extends BaseController
             $order = \App\Cart\Orders\Model::get($safe_input['order_id']);
             $order->setStatus($safe_input['order_status']);
             \App\Cart\Orders\Model::update($order);
-            header("Location: /admin/orders/index.php");
+            header("Location: /admin/orders/index");
         }
 
 

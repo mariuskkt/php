@@ -20,6 +20,7 @@ class ProductsController extends BaseController
             header('HTTP/1.1 401 Unauthorized');
             exit;
         }
+        $this->page->setTitle('Admin');
         $this->page->addStyle('../../assets/css/style.css');
     }
 
@@ -50,7 +51,7 @@ class ProductsController extends BaseController
         foreach ($drinks as $drink) {
 
             $edit_link = new \Core\Views\Link([
-                'url' => '/admin/products/edit.php?id=' . $drink->getId(),
+                'url' => '/admin/products/edit?id=' . $drink->getId(),
                 'title' => 'Edit',
                 'attr' => [
                     'class' => 'btn_edit'
@@ -80,7 +81,7 @@ class ProductsController extends BaseController
         if ($form->isSubmitted() && $form->validate()) {
             $safe_input = $form->getSubmitData();
             \App\Drinks\Model::insert(new Drink($safe_input));
-            header("Location: /index.php");
+            header("Location: /index");
         }
         $content = new Content([
             'form' => $form->render(),

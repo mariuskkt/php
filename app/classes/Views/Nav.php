@@ -39,19 +39,19 @@ class Nav extends View
     {
         return [
             [
-                'link' => '/cart.php',
+                'link' => '/cart',
                 'name' => 'Cart'
             ],
             [
-                'link' => '/orders/index.php',
+                'link' => '/orders/index',
                 'name' => 'Orders'
             ],
             [
-                'link' => '/index.php',
+                'link' => '/index',
                 'name' => 'Catalog'
             ],
             [
-                'link' => '/logout.php',
+                'link' => '/logout',
                 'name' => 'Log Out'
             ]
         ];
@@ -62,23 +62,23 @@ class Nav extends View
     {
         return [
             [
-                'link' => '/admin/products/add.php',
+                'link' => '/admin/products/add',
                 'name' => 'Add Product'
             ],
             [
-                'link' => '/admin/products/view.php',
+                'link' => '/admin/products/view',
                 'name' => 'View Products'
             ],
             [
-                'link' => '/admin/orders/index.php',
+                'link' => '/admin/orders/index',
                 'name' => 'View orders'
             ],
             [
-                'link' => '/index.php',
+                'link' => '/index',
                 'name' => 'Catalog'
             ],
             [
-                'link' => '/logout.php',
+                'link' => '/logout',
                 'name' => 'Log Out',
                 'class' => 'log_out'
             ]
@@ -90,15 +90,15 @@ class Nav extends View
     {
         return [
             [
-                'link' => '/login.php',
+                'link' => '/login',
                 'name' => 'Login'
             ],
             [
-                'link' => '/index.php',
+                'link' => '/index',
                 'name' => 'Catalog'
             ],
             [
-                'link' => '/register.php',
+                'link' => '/register',
                 'name' => 'Register'
             ]
         ];

@@ -1,0 +1,62 @@
+<?php
+
+\Core\Router::add(
+    'login',
+    '/login',
+    '\App\Controllers\Auth\LoginController',
+    'index');
+\Core\Router::add(
+    'index',
+    '/index',
+    '\App\Controllers\User\CatalogController',
+    'index');
+\Core\Router::add(
+    'logout',
+    '/logout',
+    '\App\Controllers\Auth\LogoutController',
+    'index');
+\Core\Router::add(
+    'register',
+    '/register',
+    '\App\Controllers\Auth\RegisterController',
+    'index');
+\Core\Router::add(
+    'cart',
+    '/cart',
+    '\App\Controllers\User\CartController',
+    'index');
+\Core\Router::add(
+    'orders',
+    '/orders/index',
+    '\App\Controllers\User\OrdersController',
+    'index');
+\Core\Router::add(
+    'view',
+    '/orders/view',
+    '\App\Controllers\User\OrdersController',
+    'view');
+\Core\Router::add(
+    'orders',
+    '/admin/orders/index',
+    '\App\Controllers\Admin\OrdersController',
+    'index');
+\Core\Router::add(
+    'view',
+    '/admin/orders/view',
+    '\App\Controllers\Admin\OrdersController',
+    'view');
+\Core\Router::add(
+    'add',
+    '/admin/products/add',
+    '\App\Controllers\Admin\ProductsController',
+    'create');
+\Core\Router::add(
+    'edit',
+    '/admin/products/edit',
+    '\App\Controllers\Admin\ProductsController',
+    'edit');
+\Core\Router::add(
+    'view',
+    '/admin/products/view',
+    '\App\Controllers\Admin\ProductsController',
+    'index');

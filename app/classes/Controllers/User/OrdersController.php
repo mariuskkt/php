@@ -44,7 +44,7 @@ class OrdersController extends BaseController
         foreach ($orders as $order) {
 
             $link = new \Core\Views\Link([
-                'url' => '/orders/view.php?id=' . $order->getId(),
+                'url' => '/orders/view?id=' . $order->getId(),
                 'title' => 'View order',
                 'attr' => [
                     'class' => 'view_order'

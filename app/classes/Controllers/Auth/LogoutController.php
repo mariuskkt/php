@@ -10,6 +10,6 @@ class LogoutController extends BaseController
 {
     public function index(): ?string
     {
-        App::$session->logout('/login.php');
+        App::$session->logout('/login');
     }
 }

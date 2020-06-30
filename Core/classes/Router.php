@@ -28,16 +28,7 @@ class Router extends \Core\Abstracts\Router
      * @return mixed
      */
     public static $routes = [
-        'login' => [
-            'url' => '/login',
-            'controller_name' => '\App\Controllers\Auth\LoginController',
-            'controller_method' => 'index',
-        ],
-        'index' => [
-            'url' => '/index',
-            'controller_name' => '\App\Controllers\Auth\LoginController',
-            'controller_method' => 'index',
-        ]
+
     ];
 
     public static function add(string $name, string $url, string $controller_name, string $controller_method): void
@@ -85,7 +76,7 @@ class Router extends \Core\Abstracts\Router
      * @param $name
      * @return string|null
      */
-    protected static function getUrl($name): ?string
+    public static function getUrl($name): ?string
     {
         return self::$routes[$name]['url'] ?? null;
     }

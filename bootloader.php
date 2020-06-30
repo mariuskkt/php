@@ -22,3 +22,5 @@ require 'app/functions/form/validators.php';
 require 'vendor/autoload.php';
 
 $app = new App\App();
+
+require 'app/config/routes.php';
